@@ -34,7 +34,7 @@ header .container {
 }
 
 .logo h1 {
-    color: #6C1ED9;
+    color: #A72A7C;
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -57,12 +57,12 @@ header .container {
 }
 
 .search-bar input:focus {
-    border-color: #6C1ED9;
+    border-color: #A72A7C;
     outline: none;
 }
 
 .search-bar button {
-    background-color: #6C1ED9;
+    background-color: #A72A7C;
     color: #fff;
     padding: 0.45rem 0.5rem;
     border: none;
@@ -74,7 +74,7 @@ header .container {
 }
 
 .search-bar button:hover {
-    background-color: #AC41F2;
+    background-color: #F8A1D1;
     transform: scale(1.05);
 }
 
@@ -97,7 +97,7 @@ header nav a {
 }
 
 header nav a:hover {
-    color: #05F2F2;
+    color: #2F4A8A;
 }
 
 header nav a::after {
@@ -105,7 +105,7 @@ header nav a::after {
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: #05F2F2;
+    background-color: #2F4A8A;
     bottom: -4px;
     left: 0;
     transition: width 0.3s ease;
@@ -115,8 +115,8 @@ header nav a:hover::after {
     width: 100%;
 }
 
-.create-event {
-    background-color: #AC41F2;
+.create-event, .view-tickets, .login-signup {
+    background-color: #A72A7C;
     color: #fff;
     padding: 0.5rem 1rem;
     border: none;
@@ -128,12 +128,12 @@ header nav a:hover::after {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.create-event:hover {
-    background-color: #6C1ED9;
+.create-event:hover, .view-tickets:hover, .login-signup:hover {
+    background-color: #F8A1D1;
     transform: scale(1.05);
 }
 
-.create-event:active {
+.create-event:active, .view-tickets:active, .login-signup:active {
     transform: scale(0.95);
 }
 
@@ -156,8 +156,14 @@ header nav a:hover::after {
     }
 }
 
+/* Main Content */
+#main-content {
+    display: block !important; /* Đảm bảo main-content luôn hiển thị */
+}
+
 /* Banner Section */
 .banner-section {
+    display: block !important; /* Đảm bảo banner-section luôn hiển thị */
     margin: 2rem 0;
 }
 
@@ -209,11 +215,11 @@ header nav a:hover::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0; /* Ẩn mặc định */
+    opacity: 0;
 }
 
 .banner-content:hover .mute-control {
-    opacity: 1; /* Hiển thị khi hover */
+    opacity: 1;
 }
 
 .mute-control:hover {
@@ -252,7 +258,7 @@ header nav a:hover::after {
 }
 
 .view-details {
-    background-color: #6C1ED9;
+    background-color: #A72A7C;
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -265,7 +271,7 @@ header nav a:hover::after {
 }
 
 .view-details:hover {
-    background-color: #AC41F2;
+    background-color: #F8A1D1;
     transform: scale(1.05);
 }
 
@@ -275,7 +281,7 @@ header nav a:hover::after {
 
 /* Section Title */
 .section-title {
-    color: #AC41F2;
+    color: #A72A7C;
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
@@ -286,6 +292,7 @@ header nav a:hover::after {
 
 /* Events Section (Sự kiện đặc biệt) */
 .events {
+    display: block !important; /* Đảm bảo events luôn hiển thị */
     padding: 3rem 0;
 }
 
@@ -352,7 +359,7 @@ header nav a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(108, 30, 217, 0.8);
+    background: rgba(167, 42, 124, 0.8);
     color: #fff;
     display: flex;
     align-items: center;
@@ -389,7 +396,7 @@ header nav a:hover::after {
 }
 
 .event-card button {
-    background-color: #AC41F2;
+    background-color: #A72A7C;
     color: #fff;
     padding: 0.5rem 1rem;
     border: none;
@@ -403,7 +410,7 @@ header nav a:hover::after {
 }
 
 .event-card button:hover {
-    background-color: #6C1ED9;
+    background-color: #F8A1D1;
     transform: scale(1.05);
 }
 
@@ -423,7 +430,7 @@ header nav a:hover::after {
     border-radius: 100%;
     width: 3rem;
     height: 3rem;
-    transition: background-color 0.3s ease; /* Chỉ giữ hiệu ứng đổi màu */
+    transition: background-color 0.3s ease;
 }
 
 .carousel-prev:hover, .carousel-next:hover {
@@ -446,6 +453,7 @@ header nav a:hover::after {
 
 /* Trending Events Section (Sự kiện xu hướng) */
 .trending-events {
+    display: block !important; /* Đảm bảo trending-events luôn hiển thị */
     padding: 3rem 0;
 }
 
@@ -457,9 +465,9 @@ header nav a:hover::after {
 
 .trending-carousel .carousel-wrapper {
     display: flex;
-    align-items: flex-end; /* Căn các card từ dưới lên để chân thẳng hàng, tạo hiệu ứng bậc thang ngược */
+    align-items: flex-end;
     transition: transform 0.5s ease-in-out;
-    gap: 2rem; /* Khoảng cách giữa các card */
+    gap: 2rem;
     width: max-content;
 }
 
@@ -490,7 +498,6 @@ header nav a:hover::after {
     z-index: 0;
 }
 
-/* Kích thước cho các card */
 .trending-card.rank-1 {
     flex: 0 0 360px;
 }
@@ -515,7 +522,6 @@ header nav a:hover::after {
     height: 240px;
 }
 
-/* Các card từ rank 4 đến 10 */
 .trending-card.rank-4,
 .trending-card.rank-5,
 .trending-card.rank-6,
@@ -556,7 +562,7 @@ header nav a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(108, 30, 217, 0.8);
+    background: rgba(167, 42, 124, 0.8);
     color: #fff;
     display: flex;
     align-items: center;
@@ -591,7 +597,7 @@ header nav a:hover::after {
 }
 
 .trending-card button {
-    background-color: #AC41F2;
+    background-color: #A72A7C;
     color: #fff;
     padding: 0.4rem 0.8rem;
     border: none;
@@ -605,7 +611,7 @@ header nav a:hover::after {
 }
 
 .trending-card button:hover {
-    background-color: #6C1ED9;
+    background-color: #F8A1D1;
     transform: scale(1.05);
 }
 
@@ -615,23 +621,24 @@ header nav a:hover::after {
 
 .event-rank {
     position: absolute;
-    top: 0; /* Điều chỉnh từ -15px thành 0 để tránh bị cắt */
-    left: 0; /* Điều chỉnh từ -15px thành 0 để tránh bị cắt */
-    background-color: #34C759;
+    top: 0;
+    left: 0;
+    background-color: #F5E6F0;
     color: #fff;
     font-size: 1.5rem;
     font-weight: bold;
     width: 40px;
-    height: 40px; /* Giảm chiều cao để phù hợp với vị trí mới */
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0 0 12px 0; /* Điều chỉnh border-radius để phù hợp */
+    border-radius: 0 0 12px 0;
     z-index: 2;
 }
 
 /* Recommended Events Section (Dành cho bạn) */
 .recommended-events {
+    display: block !important; /* Đảm bảo recommended-events luôn hiển thị */
     padding: 3rem 0;
 }
 
@@ -697,8 +704,8 @@ header nav a:hover::after {
 }
 
 .recommended-card .event-info .event-price {
-    color: #34C759;
-    font-size: 0.9rem;
+    color: #A72A7C;
+    font-size: 1rem;
     margin-bottom: 0.2rem;
 }
 
@@ -709,7 +716,7 @@ header nav a:hover::after {
 }
 
 .recommended-card button {
-    background-color: #AC41F2;
+    background-color: #A72A7C;
     color: #fff;
     padding: 0.4rem 0.8rem;
     border: none;
@@ -723,7 +730,7 @@ header nav a:hover::after {
 }
 
 .recommended-card button:hover {
-    background-color: #6C1ED9;
+    background-color: #F8A1D1;
     transform: scale(1.05);
 }
 
@@ -731,7 +738,7 @@ header nav a:hover::after {
     transform: scale(0.95);
 }
 
-/* Modal */
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -739,103 +746,93 @@ header nav a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #0B0340;
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
+    background-color: #0B0340;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
     max-width: 500px;
     position: relative;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-in-out;
 }
 
-.modal.active .modal-content {
-    opacity: 1;
-}
-
-.modal-content img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.modal-content img:hover {
-    transform: scale(1.03);
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .close-btn {
     position: absolute;
     top: 10px;
     right: 15px;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    color: #fff;
     cursor: pointer;
-    color: #6C1ED9;
-    transition: transform 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .close-btn:hover {
-    transform: scale(1.2);
+    color: #F8A1D1;
 }
 
-.modal-content button {
-    background-color: #6C1ED9;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 1rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.modal-content button:hover {
-    background-color: #AC41F2;
-    transform: scale(1.05);
-}
-
-.modal-content button:active {
-    transform: scale(0.95);
-}
-
-/* Create Event Modal */
-#createEventModal .modal-content {
+/* Login Modal */
+#loginModal .modal-content {
     padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: left;
 }
 
-#createEventForm {
+#loginModal h2 {
+    color: #A72A7C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#loginForm {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-#createEventForm label {
+#loginForm label {
     font-weight: 600;
     color: #4b5563;
-    text-align: left;
 }
 
-#createEventForm input {
+#loginForm input {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
 }
 
-#createEventForm button {
-    background-color: #6C1ED9;
+#loginForm button {
+    background-color: #A72A7C;
     color: #fff;
     padding: 0.75rem;
     border: none;
@@ -844,9 +841,398 @@ header nav a:hover::after {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-#createEventForm button:hover {
-    background-color: #AC41F2;
+#loginForm button:hover {
+    background-color: #F8A1D1;
     transform: scale(1.05);
+}
+
+.google-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.google-login img {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.google-login:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.05);
+}
+
+.forgot-password, .signup-link {
+    color: #A72A7C;
+    text-align: center;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover, .signup-link:hover {
+    color: #F8A1D1;
+}
+
+/* Create Event Page */
+.create-event-page {
+    display: none;
+    padding: 2rem;
+    background-color: #0B0340;
+    color: #fff;
+}
+
+.create-event-page h2 {
+    color: #A72A7C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: #4b5563;
+    color: #fff;
+    border-radius: 4px;
+    margin: 0 0.5rem;
+}
+
+.step.active {
+    background-color: #A72A7C;
+}
+
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.event-form label {
+    font-weight: 600;
+}
+
+.event-form input, .event-form select, .event-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #4b5563;
+}
+
+.event-form input[type="file"] {
+    padding: 0;
+}
+
+.event-form .location-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.event-form .location-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.event-form .location-details input, .event-form .location-details select {
+    flex: 1;
+    min-width: 200px;
+}
+
+.event-form button {
+    background-color: #A72A7C;
+    color: #fff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.event-form button:hover {
+    background-color: #F8A1D1;
+    transform: scale(1.05);
+}
+
+/* Purchased Tickets Page */
+.tickets-page {
+    display: none;
+    padding: 2rem;
+    background-color: #0B0340;
+    color: #fff;
+}
+
+.tickets-page h2 {
+    color: #A72A7C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.tickets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ticket-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #4b5563;
+}
+
+.ticket-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.ticket-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.ticket-card .status {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.ticket-card .status.success {
+    background-color: #A72A7C;
+    color: #fff;
+}
+
+.ticket-card .status.pending {
+    background-color: #4b5563;
+    color: #fff;
+}
+
+.ticket-card button {
+    background-color: #A72A7C;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.ticket-card button:hover {
+    background-color: #F8A1D1;
+    transform: scale(1.05);
+}
+
+/* Account Page */
+.account-page {
+    display: none;
+    padding: 2rem;
+    background-color: #0B0340;
+    color: #fff;
+}
+
+.account-page h2 {
+    color: #A72A7C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.account-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.account-menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem;
+    background-color: #4b5563;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.account-menu a:hover {
+    background-color: #A72A7C;
+}
+
+/* My Events Page */
+.my-events-page {
+    display: none;
+    padding: 2rem;
+    background-color: #0B0340;
+    color: #fff;
+}
+
+.my-events-page h2 {
+    color: #A72A7C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.events-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.events-list .event-card {
+    flex: 0 0 calc(33.33% - 1rem);
+}
+
+.events-list .event-card .status {
+    color: #A72A7C;
+    font-weight: 600;
+}
+
+/* Report Management Page */
+.report-management-page {
+    display: none;
+    padding: 2rem;
+    background-color: #0B0340;
+    color: #fff;
+}
+
+.report-management-page h2 {
+    color: #A72A7C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.report-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.report-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    color: #4b5563;
+}
+
+.report-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.report-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Organizer Terms Page */
+.organizer-terms-page {
+    display: none;
+    padding: 2rem;
+    background-color: #0B0340;
+    color: #fff;
+}
+
+.organizer-terms-page h2 {
+    color: #A72A7C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.terms-content {
+    background-color: #fff;
+    color: #4b5563;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.terms-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.terms-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Event Detail Page */
+.event-detail-page {
+    display: none;
+    padding: 2rem;
+    background-color: #0B0340;
+    color: #fff;
+}
+
+.event-detail-page h2 {
+    color: #A72A7C;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.event-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.event-detail-page .event-info {
+    background-color: #fff;
+    color: #4b5563;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.event-detail-page .event-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.event-detail-page .event-info p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.event-detail-page .organizer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #fff;
+    color: #4b5563;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.event-detail-page .organizer img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.event-detail-page .organizer h4 {
+    font-size: 1.25rem;
+}
+
+.event-detail-page .also-like {
+    margin-top: 2rem;
 }
 
 /* Responsive Design */
@@ -862,12 +1248,12 @@ header nav a:hover::after {
     }
 
     header nav {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .banner-content {
-        height: 300px;
+        height: 250px;
     }
 
     .banner-info h2 {
@@ -879,49 +1265,32 @@ header nav a:hover::after {
     }
 
     .event-card {
-        flex: 0 0 200px;
+        flex: 0 0 250px;
     }
 
     .event-card .image-container {
-        height: 112px;
+        height: 140px;
     }
 
-    .modal-content {
-        width: 90%;
-        margin: 10% auto;
-    }
-
-    .event-overlay {
-        font-size: 0.8rem;
-    }
-
-    .section-title {
-        font-size: 1.5rem;
-    }
-
-    /* Trending Events Responsive */
-    .trending-card.rank-1 {
-        flex: 0 0 240px;
+    .trending-card.rank-1,
+    .trending-card.rank-2 {
+        flex: 0 0 300px;
     }
 
     .trending-card.rank-1 .image-container {
-        height: 267px;
-    }
-
-    .trending-card.rank-2 {
-        flex: 0 0 240px;
+        height: 350px;
     }
 
     .trending-card.rank-2 .image-container {
-        height: 213px;
+        height: 280px;
     }
 
     .trending-card.rank-3 {
-        flex: 0 0 215px;
+        flex: 0 0 280px;
     }
 
     .trending-card.rank-3 .image-container {
-        height: 160px;
+        height: 210px;
     }
 
     .trending-card.rank-4,
@@ -931,7 +1300,7 @@ header nav a:hover::after {
     .trending-card.rank-8,
     .trending-card.rank-9,
     .trending-card.rank-10 {
-        flex: 0 0 180px;
+        flex: 0 0 230px;
     }
 
     .trending-card.rank-4 .image-container,
@@ -941,15 +1310,222 @@ header nav a:hover::after {
     .trending-card.rank-8 .image-container,
     .trending-card.rank-9 .image-container,
     .trending-card.rank-10 .image-container {
-        height: 133px;
+        height: 170px;
     }
 
-    /* Recommended Events Responsive */
     .recommended-card {
-        flex: 0 0 220px;
+        flex: 0 0 280px;
     }
 
     .recommended-card .image-container {
-        height: 177px;
+        height: 225px;
     }
+
+    .event-form .location-details input,
+    .event-form .location-details select {
+        min-width: 100%;
+    }
+
+    .events-list .event-card {
+        flex: 0 0 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-info h2 {
+        font-size: 1.2rem;
+    }
+
+    .banner-info p {
+        font-size: 0.8rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .event-card {
+        flex: 0 0 220px;
+    }
+
+    .event-card .image-container {
+        height: 124px;
+    }
+
+    .trending-card.rank-1,
+    .trending-card.rank-2 {
+        flex: 0 0 250px;
+    }
+
+    .trending-card.rank-1 .image-container {
+        height: 300px;
+    }
+
+    .trending-card.rank-2 .image-container {
+        height: 240px;
+    }
+
+    .trending-card.rank-3 {
+        flex: 0 0 230px;
+    }
+
+    .trending-card.rank-3 .image-container {
+        height: 180px;
+    }
+
+    .trending-card.rank-4,
+    .trending-card.rank-5,
+    .trending-card.rank-6,
+    .trending-card.rank-7,
+    .trending-card.rank-8,
+    .trending-card.rank-9,
+    .trending-card.rank-10 {
+        flex: 0 0 200px;
+    }
+
+    .trending-card.rank-4 .image-container,
+    .trending-card.rank-5 .image-container,
+    .trending-card.rank-6 .image-container,
+    .trending-card.rank-7 .image-container,
+    .trending-card.rank-8 .image-container,
+    .trending-card.rank-9 .image-container,
+    .trending-card.rank-10 .image-container {
+        height: 150px;
+    }
+
+    .recommended-card {
+        flex: 0 0 240px;
+    }
+
+    .recommended-card .image-container {
+        height: 195px;
+    }
+
+    .step-indicator {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .step {
+        margin: 0;
+    }
+}
+
+/* Style cho logo EVENTORY */
+.logo {
+    cursor: pointer;
+}
+
+/* Style cho nút đóng modal */
+.modal .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal .close-btn:hover {
+    color: #F8A1D1;
+}
+
+/* Đảm bảo event-detail-page hiển thị tốt */
+.event-detail-page .event-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.event-detail-page .event-info h3 {
+    margin-top: 20px;
+    color: #A72A7C;
+}
+
+.event-detail-page .organizer {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.event-detail-page .organizer img {
+    margin-right: 10px;
+}
+
+/* Ticket Info Section */
+.ticket-info {
+    background-color: #fff;
+    color: #4b5563;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.ticket-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #A72A7C;
+}
+
+.ticket-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.ticket-item:last-child {
+    border-bottom: none;
+}
+
+.ticket-time {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 0.3rem;
+}
+
+.ticket-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+
+.ticket-category {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.ticket-price {
+    font-size: 1rem;
+    color: #A72A7C;
+}
+
+.buy-ticket {
+    background-color: #A72A7C;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.buy-ticket:hover {
+    background-color: #F8A1D1;
+    transform: scale(1.05);
+}
+
+.buy-ticket:active {
+    transform: scale(0.95);
+}
+
+.sold-out {
+    color: #ff0000;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
