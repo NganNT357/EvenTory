@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Eventory - Nền tảng tìm kiếm và đặt vé sự kiện hàng đầu tại Việt Nam">
+  <title>Eventory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>Eventory</h1>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Tìm gì đó bùng nổ 🔥 nào?" aria-label="Tìm kiếm sự kiện">
+        <button>Tìm kiếm</button>
+      </div>
+      <nav>
+        <button class="create-event">Tạo sự kiện</button>
+        <a href="#">Vé đã mua</a>
+        <a href="#">Đăng nhập | Đăng ký</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banner Section -->
+  <section class="banner-section">
+    <div class="banner">
+      <div class="banner-content">
+        <video id="bannerVideo" muted loop preload="metadata" poster="./assets/poster1.jpg">
+          <source src="./assets/banner1.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ video.
+        </video>
+        <button class="mute-control" id="muteControl" aria-label="Tắt âm thanh">🔇</button>
+        <div class="banner-info">
+          <h2>SỰ KIỆN QUỐC TẾ<br>BABYMONSTER - HELLO MONSTERS</h2>
+          <p>30/04/2025 - Nhà thi đấu Phú Thọ</p>
+          <button class="view-details" onclick="openModal('BABYMONSTER - HELLO MONSTERS', '30/04/2025', 'Nhà thi đấu Phú Thọ', './assets/poster1.jpg')">Xem chi tiết</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Section (Sự kiện đặc biệt) -->
+  <section class="events">
+    <div class="container">
+      <h3 class="section-title">Sự kiện đặc biệt</h3>
+      <div class="events-carousel">
+        <div class="carousel-wrapper" id="carouselWrapper">
+          <div class="event-card" data-category="concert" data-location="Nhà thi đấu Phú Thọ">
+            <div class="image-container">
+              <img src="./assets/poster1.jpg" alt="BABYMONSTER - HELLO MONSTERS" loading="lazy">
+              <div class="event-overlay">Sự kiện quốc tế bùng nổ!</div>
+            </div>
+            <div class="event-info">
+              <h4>BABYMONSTER - HELLO MONSTERS</h4>
+              <p>30/04/2025</p>
+              <button onclick="openModal('BABYMONSTER - HELLO MONSTERS', '30/04/2025', 'Nhà thi đấu Phú Thọ', './assets/poster1.jpg')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="event-card" data-category="concert" data-location="Nhà hát Hòa Bình">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="Con Hổ Sói" loading="lazy">
+              <div class="event-overlay">Sự kiện âm nhạc hoành tráng!</div>
+            </div>
+            <div class="event-info">
+              <h4>CON HỔ SÓI</h4>
+              <p>24/04/2025</p>
+              <button onclick="openModal('CON HỔ SÓI', '24/04/2025', 'Nhà hát Hòa Bình', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="event-card" data-category="concert" data-location="Nhà hát Hòa Bình">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="SANTNOKSTER" loading="lazy">
+              <div class="event-overlay">Buổi hòa nhạc đỉnh cao!</div>
+            </div>
+            <div class="event-info">
+              <h4>SANTNOKSTER</h4>
+              <p>25/04/2025</p>
+              <button onclick="openModal('SANTNOKSTER', '25/04/2025', 'Nhà hát Hòa Bình', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="event-card" data-category="festival" data-location="Sân vận động Phú Thọ">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="QUAND LINUG TABTER" loading="lazy">
+              <div class="event-overlay">Lễ hội ngoài trời sôi động!</div>
+            </div>
+            <div class="event-info">
+              <h4>QUAND LINUG TABTER</h4>
+              <p>26/04/2025</p>
+              <button onclick="openModal('QUAND LINUG TABTER', '26/04/2025', 'Sân vận động Phú Thọ', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="event-card" data-category="fan-meeting" data-location="Nhà văn hóa Thanh Niên">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="FAN MEETING - STARLIGHT" loading="lazy">
+              <div class="event-overlay">Gặp gỡ thần tượng của bạn!</div>
+            </div>
+            <div class="event-info">
+              <h4>FAN MEETING - STARLIGHT</h4>
+              <p>01/05/2025</p>
+              <button onclick="openModal('FAN MEETING - STARLIGHT', '01/05/2025', 'Nhà văn hóa Thanh Niên', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="event-card" data-category="showcase" data-location="Trung tâm Hội nghị Quốc gia">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="NEXT GEN SHOWCASE" loading="lazy">
+              <div class="event-overlay">Buổi ra mắt thế hệ mới!</div>
+            </div>
+            <div class="event-info">
+              <h4>NEXT GEN SHOWCASE</h4>
+              <p>05/05/2025</p>
+              <button onclick="openModal('NEXT GEN SHOWCASE', '05/05/2025', 'Trung tâm Hội nghị Quốc gia', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="event-card" data-category="concert" data-location="Sân vận động Hàng Đẫy">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="END OF SUMMER CONCERT" loading="lazy">
+              <div class="event-overlay">Kết thúc mùa hè rực rỡ!</div>
+            </div>
+            <div class="event-info">
+              <h4>END OF SUMMER CONCERT</h4>
+              <p>10/07/2025</p>
+              <button onclick="openModal('END OF SUMMER CONCERT', '10/07/2025', 'Sân vận động Hàng Đẫy', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="event-card" data-category="festival" data-location="Công viên Thống Nhất">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="FOOD FESTIVAL 2025" loading="lazy">
+              <div class="event-overlay">Thưởng thức ẩm thực đa dạng!</div>
+            </div>
+            <div class="event-info">
+              <h4>FOOD FESTIVAL 2025</h4>
+              <p>20/06/2025</p>
+              <button onclick="openModal('FOOD FESTIVAL 2025', '20/06/2025', 'Công viên Thống Nhất', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-prev" aria-label="Sự kiện trước">❮</button>
+        <button class="carousel-next" aria-label="Sự kiện tiếp theo">❯</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Events Section (Sự kiện xu hướng) -->
+  <section class="trending-events">
+    <div class="container">
+      <h3 class="section-title">🔥 Sự kiện xu hướng</h3>
+      <div class="trending-carousel">
+        <div class="carousel-wrapper" id="trendingCarouselWrapper">
+          <div class="trending-card rank-1" data-category="fan-meeting">
+            <span class="event-rank">1</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="FAN MEETING 3rd" loading="lazy">
+              <div class="event-overlay">Gặp gỡ thần tượng hàng đầu!</div>
+            </div>
+            <div class="event-info">
+              <h4>FAN MEETING 3rd</h4>
+              <p class="event-details">14/05 - 09/05/2025 • Gặp gỡ thần tượng</p>
+              <button onclick="openModal('FAN MEETING 3rd', '14/05 - 09/05/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-2" data-category="showcase">
+            <span class="event-rank">2</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="DEBUT SHOWCASE" loading="lazy">
+              <div class="event-overlay">Sự kiện ra mắt hoành tráng!</div>
+            </div>
+            <div class="event-info">
+              <h4>DEBUT SHOWCASE</h4>
+              <p class="event-details">10:00 - 20/04/2025 • Buổi ra mắt</p>
+              <button onclick="openModal('DEBUT SHOWCASE', '10:00 - 20/04/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-3" data-category="concert">
+            <span class="event-rank">3</span>
+            <div class="image-container">
+              <img src="./assets/poster1.jpg" alt="BABYMONSTER - HELLO MONSTERS" loading="lazy">
+              <div class="event-overlay">Sự kiện quốc tế bùng nổ!</div>
+            </div>
+            <div class="event-info">
+              <h4>BABYMONSTER - HELLO MONSTERS</h4>
+              <p class="event-details">30/04/2025 • Concert quốc tế</p>
+              <button onclick="openModal('BABYMONSTER - HELLO MONSTERS', '30/04/2025', 'Nhà thi đấu Phú Thọ', './assets/poster1.jpg')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-4" data-category="celebration">
+            <span class="event-rank">4</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="KỶ NIỆM SƠN NAM" loading="lazy">
+              <div class="event-overlay">Kỷ niệm đáng nhớ!</div>
+            </div>
+            <div class="event-info">
+              <h4>KỶ NIỆM SƠN NAM</h4>
+              <p class="event-details">01/05 - 05/05/2025 • Kỷ niệm 50 năm</p>
+              <button onclick="openModal('KỶ NIỆM SƠN NAM', '01/05 - 05/05/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-5" data-category="concert">
+            <span class="event-rank">5</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="SUMMER MUSIC FEST" loading="lazy">
+              <div class="event-overlay">Lễ hội âm nhạc sôi động!</div>
+            </div>
+            <div class="event-info">
+              <h4>SUMMER MUSIC FEST</h4>
+              <p class="event-details">15/06/2025 • Lễ hội âm nhạc</p>
+              <button onclick="openModal('SUMMER MUSIC FEST', '15/06/2025', 'Sân vận động Mỹ Đình', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-6" data-category="festival">
+            <span class="event-rank">6</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="FOOD FESTIVAL 2025" loading="lazy">
+              <div class="event-overlay">Thưởng thức ẩm thực đa dạng!</div>
+            </div>
+            <div class="event-info">
+              <h4>FOOD FESTIVAL 2025</h4>
+              <p class="event-details">20/06 - 22/06/2025 • Lễ hội ẩm thực</p>
+              <button onclick="openModal('FOOD FESTIVAL 2025', '20/06 - 22/06/2025', 'Công viên Thống Nhất', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-7" data-category="concert">
+            <span class="event-rank">7</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="ROCK NIGHT 2025" loading="lazy">
+              <div class="event-overlay">Đêm nhạc rock đỉnh cao!</div>
+            </div>
+            <div class="event-info">
+              <h4>ROCK NIGHT 2025</h4>
+              <p class="event-details">25/06/2025 • Đêm nhạc rock</p>
+              <button onclick="openModal('ROCK NIGHT 2025', '25/06/2025', 'Nhà thi đấu Nguyễn Du', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-8" data-category="fan-meeting">
+            <span class="event-rank">8</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="FAN MEETING - STARLIGHT" loading="lazy">
+              <div class="event-overlay">Gặp gỡ thần tượng của bạn!</div>
+            </div>
+            <div class="event-info">
+              <h4>FAN MEETING - STARLIGHT</h4>
+              <p class="event-details">01/07/2025 • Gặp gỡ thần tượng</p>
+              <button onclick="openModal('FAN MEETING - STARLIGHT', '01/07/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-9" data-category="showcase">
+            <span class="event-rank">9</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="NEXT GEN SHOWCASE" loading="lazy">
+              <div class="event-overlay">Buổi ra mắt thế hệ mới!</div>
+            </div>
+            <div class="event-info">
+              <h4>NEXT GEN SHOWCASE</h4>
+              <p class="event-details">05/07/2025 • Buổi ra mắt</p>
+              <button onclick="openModal('NEXT GEN SHOWCASE', '05/07/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="trending-card rank-10" data-category="concert">
+            <span class="event-rank">10</span>
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="END OF SUMMER CONCERT" loading="lazy">
+              <div class="event-overlay">Kết thúc mùa hè rực rỡ!</div>
+            </div>
+            <div class="event-info">
+              <h4>END OF SUMMER CONCERT</h4>
+              <p class="event-details">10/07/2025 • Concert mùa hè</p>
+              <button onclick="openModal('END OF SUMMER CONCERT', '10/07/2025', 'Sân vận động Hàng Đẫy', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-prev" id="trendingPrev" aria-label="Sự kiện xu hướng trước">❮</button>
+        <button class="carousel-next" id="trendingNext" aria-label="Sự kiện xu hướng tiếp theo">❯</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommended Events Section (Dành cho bạn) -->
+  <section class="recommended-events">
+    <div class="container">
+      <h3 class="section-title">Dành cho bạn</h3>
+      <div class="recommended-carousel">
+        <div class="carousel-wrapper" id="recommendedCarouselWrapper">
+          <div class="recommended-card" data-category="theater">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="Sân Khấu SB - Vở Kịch: Mật Đồi Mật" loading="lazy">
+            </div>
+            <div class="event-info">
+              <h4>Sân Khấu SB - Vở Kịch: Mật Đồi Mật</h4>
+              <p class="event-price">Từ 0đ</p>
+              <p class="event-date">30 tháng 04, 2025</p>
+              <button onclick="openModal('Sân Khấu SB - Vở Kịch: Mật Đồi Mật', '30/04/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="recommended-card" data-category="theater">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="Sân Khấu Hồng Vân: Vở Kịch Bông Cánh Cò" loading="lazy">
+            </div>
+            <div class="event-info">
+              <h4>Sân Khấu Hồng Vân: Vở Kịch Bông Cánh Cò</h4>
+              <p class="event-price">Từ 300.000đ</p>
+              <p class="event-date">03 tháng 05, 2025</p>
+              <button onclick="openModal('Sân Khấu Hồng Vân: Vở Kịch Bông Cánh Cò', '03/05/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="recommended-card" data-category="workshop">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="[FLOWER 1969's] WORKSHOP CANDLE - HỌC LÀM NẾN THƠM" loading="lazy">
+            </div>
+            <div class="event-info">
+              <h4>[FLOWER 1969's] WORKSHOP CANDLE - HỌC LÀM NẾN THƠM</h4>
+              <p class="event-price">Từ 279.000đ</p>
+              <p class="event-date">26 tháng 04, 2025</p>
+              <button onclick="openModal('[FLOWER 1969\'s] WORKSHOP CANDLE - HỌC LÀM NẾN THƠM', '26/04/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="recommended-card" data-category="workshop">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="[FLOWER 1969's] ROLLERBALL PERFUME WORKSHOP - NƯỚC HOA LĂN" loading="lazy">
+            </div>
+            <div class="event-info">
+              <h4>[FLOWER 1969's] ROLLERBALL PERFUME WORKSHOP - NƯỚC HOA LĂN</h4>
+              <p class="event-price">Từ 279.000đ</p>
+              <p class="event-date">26 tháng 04, 2025</p>
+              <button onclick="openModal('[FLOWER 1969\'s] ROLLERBALL PERFUME WORKSHOP - NƯỚC HOA LĂN', '26/04/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="recommended-card" data-category="concert">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="SUMMER MUSIC FESTIVAL" loading="lazy">
+            </div>
+            <div class="event-info">
+              <h4>SUMMER MUSIC FESTIVAL</h4>
+              <p class="event-price">Từ 500.000đ</p>
+              <p class="event-date">15 tháng 06, 2025</p>
+              <button onclick="openModal('SUMMER MUSIC FESTIVAL', '15/06/2025', 'Sân vận động Mỹ Đình', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="recommended-card" data-category="festival">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="FOOD FESTIVAL 2025" loading="lazy">
+            </div>
+            <div class="event-info">
+              <h4>FOOD FESTIVAL 2025</h4>
+              <p class="event-price">Từ 100.000đ</p>
+              <p class="event-date">20 tháng 06, 2025</p>
+              <button onclick="openModal('FOOD FESTIVAL 2025', '20/06/2025', 'Công viên Thống Nhất', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="recommended-card" data-category="concert">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="ROCK NIGHT 2025" loading="lazy">
+            </div>
+            <div class="event-info">
+              <h4>ROCK NIGHT 2025</h4>
+              <p class="event-price">Từ 400.000đ</p>
+              <p class="event-date">25 tháng 06, 2025</p>
+              <button onclick="openModal('ROCK NIGHT 2025', '25/06/2025', 'Nhà thi đấu Nguyễn Du', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+          <div class="recommended-card" data-category="fan-meeting">
+            <div class="image-container">
+              <img src="https://via.placeholder.com/300x400" alt="FAN MEETING - STARLIGHT" loading="lazy">
+            </div>
+            <div class="event-info">
+              <h4>FAN MEETING - STARLIGHT</h4>
+              <p class="event-price">Từ 250.000đ</p>
+              <p class="event-date">01 tháng 07, 2025</p>
+              <button onclick="openModal('FAN MEETING - STARLIGHT', '01/07/2025', 'Chưa xác định', 'https://via.placeholder.com/300x400')">Xem chi tiết</button>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-prev" id="recommendedPrev" aria-label="Sự kiện trước">❮</button>
+        <button class="carousel-next" id="recommendedNext" aria-label="Sự kiện tiếp theo">❯</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Modal -->
+  <div class="modal" id="eventModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal" aria-label="Đóng">×</span>
+      <h4 id="modalTitle"></h4>
+      <img id="modalImage" src="" alt="" loading="lazy">
+      <p id="modalDate"></p>
+      <p id="modalLocation"></p>
+      <button onclick="alert('Chuyển hướng đến trang thanh toán!')">Mua Vé Ngay</button>
+    </div>
+  </div>
+
+  <!-- Create Event Modal -->
+  <div class="modal" id="createEventModal" role="dialog" aria-labelledby="createEventTitle" aria-hidden="true">
+    <div class="modal-content">
+      <span class="close-btn" id="closeCreateModal" aria-label="Đóng">×</span>
+      <h4 id="createEventTitle">Tạo Sự Kiện Mới</h4>
+      <form id="createEventForm">
+        <label for="eventTitle">Tên sự kiện:</label>
+        <input type="text" id="eventTitle" required aria-required="true">
+        <label for="eventDate">Ngày diễn ra:</label>
+        <input type="date" id="eventDate" required aria-required="true">
+        <label for="eventLocation">Địa điểm:</label>
+        <input type="text" id="eventLocation" required aria-required="true">
+        <button type="submit">Tạo</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
