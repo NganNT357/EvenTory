@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Eventory - Thông tin chi tiết sự kiện" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Eventory - Chi tiết sự kiện</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <h1>Eventory</h1>
+        </div>
+        <nav>
+          <button class="create-event">Tạo sự kiện</button>
+          <a href="#" class="view-tickets">Vé đã mua</a>
+          <a href="#" class="login-signup">Đăng nhập | Đăng ký</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Event Detail Content -->
+    <section class="event-detail-page" style="display: block">
+      <div class="container">
+        <div id="event-content">
+          <h2 id="event-title">Đang tải...</h2>
+          <img
+            class="event-image"
+            id="event-image"
+            src=""
+            alt="Event Image"
+            style="display: none"
+          />
+          <div class="event-info">
+            <h3>Chương trình khuyến mãi</h3>
+            <p id="event-promotion"></p>
+            <h3>Khách mời</h3>
+            <p id="event-guests"></p>
+            <h3>Trải nghiệm đặc biệt</h3>
+            <p id="event-experience"></p>
+            <h3>Ngày diễn ra</h3>
+            <p id="event-date"></p>
+            <h3>Địa điểm</h3>
+            <p id="event-location"></p>
+          </div>
+          <!-- Section Thông tin về các hạng vé -->
+          <div class="ticket-info">
+            <h3>Thông tin về các hạng vé</h3>
+            <div id="ticket-list"></div>
+          </div>
+          <div class="organizer">
+            <img
+              id="organizer-logo"
+              src=""
+              alt="Organizer Logo"
+              style="display: none"
+            />
+            <h4 id="organizer-name"></h4>
+          </div>
+        </div>
+        <div class="also-like">
+          <h3 class="section-title">Có thể bạn cũng thích</h3>
+          <div class="recommended-carousel">
+            <div class="carousel-wrapper">
+              <div
+                class="recommended-card"
+                data-event-id="summer-music-festival"
+                data-category="concert"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="SUMMER MUSIC FESTIVAL"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>SUMMER MUSIC FESTIVAL</h4>
+                  <p class="event-price">Từ 500.000đ</p>
+                  <p class="event-date">15 tháng 06, 2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="summer-music-festival"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="recommended-card"
+                data-event-id="food-festival-2025"
+                data-category="festival"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="FOOD FESTIVAL 2025"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>FOOD FESTIVAL 2025</h4>
+                  <p class="event-price">Từ 100.000đ</p>
+                  <p class="event-date">20 tháng 06, 2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="food-festival-2025"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-prev" aria-label="Sự kiện trước">❮</button>
+            <button class="carousel-next" aria-label="Sự kiện tiếp theo">
+              ❯
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="event-detail.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Eventory - Nền tảng tìm kiếm và đặt vé sự kiện hàng đầu tại Việt Nam"
+    />
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Neonderthaw&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Praise&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icon -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Assets -->
+    <link rel="stylesheet" href="../user/assets/css/styles.css" />
+    <script src="../user/assets/js/script.js"></script>
+    <title>EvenTory</title>
+  </head>
+
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <h1>EvenTory</h1>
+        </div>
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Tìm gì đó bùng nổ 🔥 nào?"
+            aria-label="Tìm kiếm sự kiện"
+          />
+          <button aria-label="Tìm kiếm">
+            <span class="material-symbols-rounded">search</span>
+          </button>
+        </div>
+
+        <nav>
+          <button class="create-event">Tạo sự kiện</button>
+          <a href="#" class="view-tickets">Vé đã mua</a>
+          <a href="#" class="login-signup">Đăng nhập | Đăng ký</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Login Modal -->
+    <div
+      class="modal"
+      id="loginModal"
+      role="dialog"
+      aria-labelledby="loginTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-content">
+        <span class="close-btn" aria-label="Đóng">×</span>
+        <h2 id="loginTitle">Đăng nhập</h2>
+        <div id="loginForm">
+          <label for="email">Nhập email hoặc số điện thoại</label>
+          <input
+            type="text"
+            id="email"
+            placeholder="Email hoặc số điện thoại"
+            required
+            aria-required="true"
+          />
+          <label for="password">Nhập mật khẩu</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Mật khẩu"
+            required
+            aria-required="true"
+          />
+          <button type="submit">Tiếp tục</button>
+        </div>
+        <p class="forgot-password">Quên mật khẩu?</p>
+        <button class="google-login">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            alt="Google Logo"
+          />
+          Đăng nhập bằng Google
+        </button>
+        <p class="signup-link">
+          Chưa có tài khoản? <span>Tạo tài khoản ngay</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
+      <!-- Banner Section -->
+      <section class="banner-section">
+        <div class="banner">
+          <div class="banner-content">
+            <video
+              id="bannerVideo"
+              muted
+              loop
+              preload="metadata"
+              poster="./assets/poster1.jpg"
+            >
+              <source src="./assets/banner1.mp4" type="video/mp4" />
+              Trình duyệt của bạn không hỗ trợ video.
+            </video>
+            <button
+              class="mute-control"
+              id="muteControl"
+              aria-label="Tắt âm thanh"
+            >
+              🔇
+            </button>
+            <div class="banner-info">
+              <h2>SỰ KIỆN QUỐC TẾ<br />BABYMONSTER - HELLO MONSTERS</h2>
+              <p>30/04/2025 - Nhà thi đấu Phú Thọ</p>
+              <button class="view-details" data-event-id="babymonster">
+                Xem chi tiết
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Events Section (Sự kiện đặc biệt) -->
+      <section class="events">
+        <div class="container">
+          <h3 class="section-title">Sự kiện đặc biệt</h3>
+          <div class="events-carousel">
+            <div class="carousel-wrapper" id="carouselWrapper">
+              <div
+                class="event-card"
+                data-event-id="babymonster"
+                data-category="concert"
+                data-location="Nhà thi đấu Phú Thọ"
+              >
+                <div class="image-container">
+                  <img
+                    src="./assets/poster1.jpg"
+                    alt="BABYMONSTER - HELLO MONSTERS"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Sự kiện quốc tế bùng nổ!</div>
+                </div>
+                <div class="event-info">
+                  <h4>BABYMONSTER - HELLO MONSTERS</h4>
+                  <p>30/04/2025</p>
+                  <button class="view-details" data-event-id="babymonster">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="event-card"
+                data-event-id="con-ho-soi"
+                data-category="concert"
+                data-location="Nhà hát Hòa Bình"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="Con Hổ Sói"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Sự kiện âm nhạc hoành tráng!</div>
+                </div>
+                <div class="event-info">
+                  <h4>CON HỔ SÓI</h4>
+                  <p>24/04/2025</p>
+                  <button class="view-details" data-event-id="con-ho-soi">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="event-card"
+                data-event-id="santnokster"
+                data-category="concert"
+                data-location="Nhà hát Hòa Bình"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="SANTNOKSTER"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Buổi hòa nhạc đỉnh cao!</div>
+                </div>
+                <div class="event-info">
+                  <h4>SANTNOKSTER</h4>
+                  <p>25/04/2025</p>
+                  <button class="view-details" data-event-id="santnokster">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="event-card"
+                data-event-id="quand-linug-tabter"
+                data-category="festival"
+                data-location="Sân vận động Phú Thọ"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="QUAND LINUG TABTER"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Lễ hội ngoài trời sôi động!</div>
+                </div>
+                <div class="event-info">
+                  <h4>QUAND LINUG TABTER</h4>
+                  <p>26/04/2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="quand-linug-tabter"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="event-card"
+                data-event-id="fan-meeting-starlight"
+                data-category="fan-meeting"
+                data-location="Nhà văn hóa Thanh Niên"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="FAN MEETING - STARLIGHT"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Gặp gỡ thần tượng của bạn!</div>
+                </div>
+                <div class="event-info">
+                  <h4>FAN MEETING - STARLIGHT</h4>
+                  <p>01/05/2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="fan-meeting-starlight"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="event-card"
+                data-event-id="next-gen-showcase"
+                data-category="showcase"
+                data-location="Trung tâm Hội nghị Quốc gia"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="NEXT GEN SHOWCASE"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Buổi ra mắt thế hệ mới!</div>
+                </div>
+                <div class="event-info">
+                  <h4>NEXT GEN SHOWCASE</h4>
+                  <p>05/05/2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="next-gen-showcase"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="event-card"
+                data-event-id="end-of-summer-concert"
+                data-category="concert"
+                data-location="Sân vận động Hàng Đẫy"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="END OF SUMMER CONCERT"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Kết thúc mùa hè rực rỡ!</div>
+                </div>
+                <div class="event-info">
+                  <h4>END OF SUMMER CONCERT</h4>
+                  <p>10/07/2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="end-of-summer-concert"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="event-card"
+                data-event-id="food-festival-2025"
+                data-category="festival"
+                data-location="Công viên Thống Nhất"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="FOOD FESTIVAL 2025"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Thưởng thức ẩm thực đa dạng!</div>
+                </div>
+                <div class="event-info">
+                  <h4>FOOD FESTIVAL 2025</h4>
+                  <p>20/06/2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="food-festival-2025"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-prev" aria-label="Sự kiện trước">❮</button>
+            <button class="carousel-next" aria-label="Sự kiện tiếp theo">
+              ❯
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trending Events Section (Sự kiện xu hướng) -->
+      <section class="trending-events">
+        <div class="container">
+          <h3 class="section-title">🔥 Sự kiện xu hướng</h3>
+          <div class="trending-carousel">
+            <div class="carousel-wrapper" id="trendingCarouselWrapper">
+              <div
+                class="trending-card rank-1"
+                data-event-id="fan-meeting-3rd"
+                data-category="fan-meeting"
+              >
+                <span class="event-rank">1</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="FAN MEETING 3rd"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Gặp gỡ thần tượng hàng đầu!</div>
+                </div>
+                <div class="event-info">
+                  <h4>FAN MEETING 3rd</h4>
+                  <p class="event-details">
+                    14/05 - 09/05/2025 • Gặp gỡ thần tượng
+                  </p>
+                  <button class="view-details" data-event-id="fan-meeting-3rd">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-2"
+                data-event-id="debut-showcase"
+                data-category="showcase"
+              >
+                <span class="event-rank">2</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="DEBUT SHOWCASE"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Sự kiện ra mắt hoành tráng!</div>
+                </div>
+                <div class="event-info">
+                  <h4>DEBUT SHOWCASE</h4>
+                  <p class="event-details">10:00 - 20/04/2025 • Buổi ra mắt</p>
+                  <button class="view-details" data-event-id="debut-showcase">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-3"
+                data-event-id="babymonster"
+                data-category="concert"
+              >
+                <span class="event-rank">3</span>
+                <div class="image-container">
+                  <img
+                    src="./assets/poster1.jpg"
+                    alt="BABYMONSTER - HELLO MONSTERS"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Sự kiện quốc tế bùng nổ!</div>
+                </div>
+                <div class="event-info">
+                  <h4>BABYMONSTER - HELLO MONSTERS</h4>
+                  <p class="event-details">30/04/2025 • Concert quốc tế</p>
+                  <button class="view-details" data-event-id="babymonster">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-4"
+                data-event-id="ky-niem-son-nam"
+                data-category="celebration"
+              >
+                <span class="event-rank">4</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="KỶ NIỆM SƠN NAM"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Kỷ niệm đáng nhớ!</div>
+                </div>
+                <div class="event-info">
+                  <h4>KỶ NIỆM SƠN NAM</h4>
+                  <p class="event-details">
+                    01/05 - 05/05/2025 • Kỷ niệm 50 năm
+                  </p>
+                  <button class="view-details" data-event-id="ky-niem-son-nam">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-5"
+                data-event-id="summer-music-fest"
+                data-category="concert"
+              >
+                <span class="event-rank">5</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="SUMMER MUSIC FEST"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Lễ hội âm nhạc sôi động!</div>
+                </div>
+                <div class="event-info">
+                  <h4>SUMMER MUSIC FEST</h4>
+                  <p class="event-details">15/06/2025 • Lễ hội âm nhạc</p>
+                  <button
+                    class="view-details"
+                    data-event-id="summer-music-fest"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-6"
+                data-event-id="food-festival-2025"
+                data-category="festival"
+              >
+                <span class="event-rank">6</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="FOOD FESTIVAL 2025"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Thưởng thức ẩm thực đa dạng!</div>
+                </div>
+                <div class="event-info">
+                  <h4>FOOD FESTIVAL 2025</h4>
+                  <p class="event-details">
+                    20/06 - 22/06/2025 • Lễ hội ẩm thực
+                  </p>
+                  <button
+                    class="view-details"
+                    data-event-id="food-festival-2025"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-7"
+                data-event-id="rock-night-2025"
+                data-category="concert"
+              >
+                <span class="event-rank">7</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="ROCK NIGHT 2025"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Đêm nhạc rock đỉnh cao!</div>
+                </div>
+                <div class="event-info">
+                  <h4>ROCK NIGHT 2025</h4>
+                  <p class="event-details">25/06/2025 • Đêm nhạc rock</p>
+                  <button class="view-details" data-event-id="rock-night-2025">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-8"
+                data-event-id="fan-meeting-starlight"
+                data-category="fan-meeting"
+              >
+                <span class="event-rank">8</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="FAN MEETING - STARLIGHT"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Gặp gỡ thần tượng của bạn!</div>
+                </div>
+                <div class="event-info">
+                  <h4>FAN MEETING - STARLIGHT</h4>
+                  <p class="event-details">01/07/2025 • Gặp gỡ thần tượng</p>
+                  <button
+                    class="view-details"
+                    data-event-id="fan-meeting-starlight"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-9"
+                data-event-id="next-gen-showcase"
+                data-category="showcase"
+              >
+                <span class="event-rank">9</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="NEXT GEN SHOWCASE"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Buổi ra mắt thế hệ mới!</div>
+                </div>
+                <div class="event-info">
+                  <h4>NEXT GEN SHOWCASE</h4>
+                  <p class="event-details">05/07/2025 • Buổi ra mắt</p>
+                  <button
+                    class="view-details"
+                    data-event-id="next-gen-showcase"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trending-card rank-10"
+                data-event-id="end-of-summer-concert"
+                data-category="concert"
+              >
+                <span class="event-rank">10</span>
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="END OF SUMMER CONCERT"
+                    loading="lazy"
+                  />
+                  <div class="event-overlay">Kết thúc mùa hè rực rỡ!</div>
+                </div>
+                <div class="event-info">
+                  <h4>END OF SUMMER CONCERT</h4>
+                  <p class="event-details">10/07/2025 • Concert mùa hè</p>
+                  <button
+                    class="view-details"
+                    data-event-id="end-of-summer-concert"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-prev"
+              id="trendingPrev"
+              aria-label="Sự kiện xu hướng trước"
+            >
+              ❮
+            </button>
+            <button
+              class="carousel-next"
+              id="trendingNext"
+              aria-label="Sự kiện xu hướng tiếp theo"
+            >
+              ❯
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recommended Events Section (Dành cho bạn) -->
+      <section class="recommended-events">
+        <div class="container">
+          <h3 class="section-title">Dành cho bạn</h3>
+          <div class="recommended-carousel">
+            <div class="carousel-wrapper" id="recommendedCarouselWrapper">
+              <div
+                class="recommended-card"
+                data-event-id="mat-doi-mat"
+                data-category="theater"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="Sân Khấu SB - Vở Kịch: Mật Đồi Mật"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>Sân Khấu SB - Vở Kịch: Mật Đồi Mật</h4>
+                  <p class="event-price">Từ 0đ</p>
+                  <p class="event-date">30 tháng 04, 2025</p>
+                  <button class="view-details" data-event-id="mat-doi-mat">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="recommended-card"
+                data-event-id="bong-canh-co"
+                data-category="theater"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="Sân Khấu Hồng Vân: Vở Kịch Bông Cánh Cò"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>Sân Khấu Hồng Vân: Vở Kịch Bông Cánh Cò</h4>
+                  <p class="event-price">Từ 300.000đ</p>
+                  <p class="event-date">03 tháng 05, 2025</p>
+                  <button class="view-details" data-event-id="bong-canh-co">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="recommended-card"
+                data-event-id="candle-workshop"
+                data-category="workshop"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="[FLOWER 1969's] WORKSHOP CANDLE - HỌC LÀM NẾN THƠM"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>[FLOWER 1969's] WORKSHOP CANDLE - HỌC LÀM NẾN THƠM</h4>
+                  <p class="event-price">Từ 279.000đ</p>
+                  <p class="event-date">26 tháng 04, 2025</p>
+                  <button class="view-details" data-event-id="candle-workshop">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="recommended-card"
+                data-event-id="perfume-workshop"
+                data-category="workshop"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="[FLOWER 1969's] ROLLERBALL PERFUME WORKSHOP - NƯỚC HOA LĂN"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>
+                    [FLOWER 1969's] ROLLERBALL PERFUME WORKSHOP - NƯỚC HOA LĂN
+                  </h4>
+                  <p class="event-price">Từ 279.000đ</p>
+                  <p class="event-date">26 tháng 04, 2025</p>
+                  <button class="view-details" data-event-id="perfume-workshop">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="recommended-card"
+                data-event-id="summer-music-festival"
+                data-category="concert"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="SUMMER MUSIC FESTIVAL"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>SUMMER MUSIC FESTIVAL</h4>
+                  <p class="event-price">Từ 500.000đ</p>
+                  <p class="event-date">15 tháng 06, 2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="summer-music-festival"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="recommended-card"
+                data-event-id="food-festival-2025"
+                data-category="festival"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="FOOD FESTIVAL 2025"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>FOOD FESTIVAL 2025</h4>
+                  <p class="event-price">Từ 100.000đ</p>
+                  <p class="event-date">20 tháng 06, 2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="food-festival-2025"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="recommended-card"
+                data-event-id="rock-night-2025"
+                data-category="concert"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="ROCK NIGHT 2025"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>ROCK NIGHT 2025</h4>
+                  <p class="event-price">Từ 400.000đ</p>
+                  <p class="event-date">25 tháng 06, 2025</p>
+                  <button class="view-details" data-event-id="rock-night-2025">
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+              <div
+                class="recommended-card"
+                data-event-id="fan-meeting-starlight"
+                data-category="fan-meeting"
+              >
+                <div class="image-container">
+                  <img
+                    src="https://via.placeholder.com/300x400"
+                    alt="FAN MEETING - STARLIGHT"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="event-info">
+                  <h4>FAN MEETING - STARLIGHT</h4>
+                  <p class="event-price">Từ 250.000đ</p>
+                  <p class="event-date">01 tháng 07, 2025</p>
+                  <button
+                    class="view-details"
+                    data-event-id="fan-meeting-starlight"
+                  >
+                    Xem chi tiết
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-prev"
+              id="recommendedPrev"
+              aria-label="Sự kiện trước"
+            >
+              ❮
+            </button>
+            <button
+              class="carousel-next"
+              id="recommendedNext"
+              aria-label="Sự kiện tiếp theo"
+            >
+              ❯
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Create Event Page (Hidden by default) -->
+    <section
+      id="createEventPage"
+      class="create-event-page"
+      style="display: none"
+    >
+      <div class="container">
+        <h2>Tạo sự kiện</h2>
+        <div class="step-indicator">
+          <div class="step active">1. Thông tin sự kiện</div>
+          <div class="step">2. Thời gian & Loại vé</div>
+          <div class="step">3. Cài đặt</div>
+          <div class="step">4. Thông tin thanh toán</div>
+        </div>
+        <div class="event-form">
+          <!-- Step 1: Thông tin sự kiện -->
+          <div class="step-content" id="step1">
+            <label>Upload logo sự kiện (720x958)</label>
+            <input type="file" accept="image/*" />
+            <label>Upload ảnh nền sự kiện (1280x720)</label>
+            <input type="file" accept="image/*" />
+            <label>Tên sự kiện</label>
+            <input type="text" placeholder="Tên sự kiện" required />
+            <label>Địa điểm</label>
+            <div class="location-options">
+              <label
+                ><input
+                  type="radio"
+                  name="locationType"
+                  value="offline"
+                  checked
+                />
+                Offline</label
+              >
+              <label
+                ><input type="radio" name="locationType" value="online" />
+                Online</label
+              >
+            </div>
+            <div class="location-details" id="offlineDetails">
+              <input type="text" placeholder="Tên địa điểm" />
+              <select>
+                <option>Tỉnh/Thành</option>
+                <option>Hà Nội</option>
+                <option>TP.HCM</option>
+              </select>
+              <select>
+                <option>Quận/Huyện</option>
+                <option>Quận 1</option>
+                <option>Quận 3</option>
+              </select>
+              <select>
+                <option>Phường/Xã</option>
+                <option>Phường Bến Nghé</option>
+                <option>Phường Bến Thành</option>
+              </select>
+              <input type="text" placeholder="Số nhà, đường" />
+            </div>
+            <label>Thể loại sự kiện</label>
+            <select>
+              <option>Âm nhạc</option>
+              <option>Hội thảo</option>
+              <option>Triển lãm</option>
+            </select>
+            <label>Thông tin sự kiện</label>
+            <textarea placeholder="Mô tả ngắn gọn về sự kiện..."></textarea>
+            <label>Chương trình chính</label>
+            <textarea placeholder="Liệt kê các hoạt động nổi bật..."></textarea>
+            <label>Khách mời</label>
+            <textarea placeholder="Thông tin về khách mời..."></textarea>
+            <label>Trải nghiệm đặc biệt</label>
+            <textarea placeholder="Các hoạt động đặc biệt..."></textarea>
+            <label>Tên ban tổ chức</label>
+            <input type="text" placeholder="Tên ban tổ chức" />
+            <label>Thông tin ban tổ chức</label>
+            <textarea placeholder="Thông tin về ban tổ chức..."></textarea>
+            <label>Upload logo ban tổ chức</label>
+            <input type="file" accept="image/*" />
+            <button onclick="nextStep(2)">Tiếp tục</button>
+          </div>
+          <!-- Step 2: Thời gian & Loại vé -->
+          <div class="step-content" id="step2" style="display: none">
+            <label>Ngày bắt đầu</label>
+            <input type="date" required />
+            <label>Ngày kết thúc</label>
+            <input type="date" required />
+            <label>Loại vé</label>
+            <input type="text" placeholder="Tên loại vé" required />
+            <input type="number" placeholder="Giá vé (VNĐ)" required />
+            <button onclick="nextStep(1)">Quay lại</button>
+            <button onclick="nextStep(3)">Tiếp tục</button>
+          </div>
+          <!-- Step 3: Cài đặt -->
+          <div class="step-content" id="step3" style="display: none">
+            <label>Công khai sự kiện</label>
+            <select>
+              <option>Công khai</option>
+              <option>Riêng tư</option>
+            </select>
+            <label>Giới hạn người tham gia</label>
+            <input type="number" placeholder="Số lượng tối đa" />
+            <button onclick="nextStep(2)">Quay lại</button>
+            <button onclick="nextStep(4)">Tiếp tục</button>
+          </div>
+          <!-- Step 4: Thông tin thanh toán -->
+          <div class="step-content" id="step4" style="display: none">
+            <label>Phương thức thanh toán</label>
+            <select>
+              <option>Chuyển khoản ngân hàng</option>
+              <option>Ví điện tử</option>
+            </select>
+            <label>Thông tin tài khoản nhận tiền</label>
+            <input type="text" placeholder="Số tài khoản" required />
+            <input type="text" placeholder="Tên ngân hàng" required />
+            <button onclick="nextStep(3)">Quay lại</button>
+            <button onclick="submitEvent()">Lưu</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Purchased Tickets Page (Hidden by default) -->
+    <section id="ticketsPage" class="tickets-page" style="display: none">
+      <div class="container">
+        <h2>Vé đã mua</h2>
+        <div class="tickets-list">
+          <div class="ticket-card">
+            <div>
+              <h4>BABYMONSTER - HELLO MONSTERS</h4>
+              <p>Ngày: 30/04/2025</p>
+              <p>Địa điểm: Nhà thi đấu Phú Thọ</p>
+            </div>
+            <div class="status success">Đã xác nhận</div>
+            <button class="view-details" data-event-id="babymonster">
+              Xem chi tiết
+            </button>
+          </div>
+          <div class="ticket-card">
+            <div>
+              <h4>CON HỔ SÓI</h4>
+              <p>Ngày: 24/04/2025</p>
+              <p>Địa điểm: Nhà hát Hòa Bình</p>
+            </div>
+            <div class="status pending">Đang xử lý</div>
+            <button class="view-details" data-event-id="con-ho-soi">
+              Xem chi tiết
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Account Page (Hidden by default) -->
+    <section id="accountPage" class="account-page" style="display: none">
+      <div class="container">
+        <h2>Tài khoản của tôi</h2>
+        <div class="account-menu">
+          <a href="#" onclick="showSection('main-content')">Trang chủ</a>
+          <a href="#" onclick="showSection('createEventPage')">Tạo sự kiện</a>
+          <a href="#" onclick="showSection('ticketsPage')">Vé đã mua</a>
+          <a href="#" onclick="showSection('myEventsPage')">Sự kiện của tôi</a>
+          <a href="#" onclick="showSection('reportManagementPage')"
+            >Quản lý báo cáo</a
+          >
+          <a href="#" onclick="showSection('organizerTermsPage')"
+            >Điều khoản ban tổ chức</a
+          >
+          <a href="#" onclick="logout()">Đăng xuất</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- My Events Page (Hidden by default) -->
+    <section id="myEventsPage" class="my-events-page" style="display: none">
+      <div class="container">
+        <h2>Sự kiện của tôi</h2>
+        <div class="events-list">
+          <div class="event-card">
+            <div class="image-container">
+              <img
+                src="https://via.placeholder.com/300x400"
+                alt="My Event 1"
+                loading="lazy"
+              />
+            </div>
+            <div class="event-info">
+              <h4>Sự kiện 1</h4>
+              <p>Ngày: 25/04/2025</p>
+              <p>Địa điểm: Hà Nội</p>
+              <p class="status">Đang chờ duyệt</p>
+            </div>
+          </div>
+          <div class="event-card">
+            <div class="image-container">
+              <img
+                src="https://via.placeholder.com/300x400"
+                alt="My Event 2"
+                loading="lazy"
+              />
+            </div>
+            <div class="event-info">
+              <h4>Sự kiện 2</h4>
+              <p>Ngày: 26/04/2025</p>
+              <p>Địa điểm: TP.HCM</p>
+              <p class="status">Đã duyệt</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Report Management Page (Hidden by default) -->
+    <section
+      id="reportManagementPage"
+      class="report-management-page"
+      style="display: none"
+    >
+      <div class="container">
+        <h2>Quản lý báo cáo</h2>
+        <div class="report-list">
+          <div class="report-card">
+            <h4>Báo cáo sự kiện 1</h4>
+            <p>Tổng vé bán: 150 vé</p>
+            <p>Doanh thu: 7.500.000 VNĐ</p>
+            <p>Ngày: 25/04/2025</p>
+          </div>
+          <div class="report-card">
+            <h4>Báo cáo sự kiện 2</h4>
+            <p>Tổng vé bán: 200 vé</p>
+            <p>Doanh thu: 10.000.000 VNĐ</p>
+            <p>Ngày: 26/04/2025</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Organizer Terms Page (Hidden by default) -->
+    <section
+      id="organizerTermsPage"
+      class="organizer-terms-page"
+      style="display: none"
+    >
+      <div class="container">
+        <h2>Điều khoản ban tổ chức</h2>
+        <div class="terms-content">
+          <h3>1. Trách nhiệm của ban tổ chức</h3>
+          <p>
+            Ban tổ chức chịu trách nhiệm đảm bảo sự kiện được tổ chức đúng thời
+            gian, địa điểm và nội dung đã công bố. Mọi thay đổi phải được thông
+            báo trước ít nhất 7 ngày.
+          </p>
+          <h3>2. Quy định về vé</h3>
+          <p>
+            Vé bán ra phải tuân thủ quy định pháp luật Việt Nam, bao gồm hóa đơn
+            VAT nếu khách hàng yêu cầu. Ban tổ chức không chịu trách nhiệm cho
+            vé mua từ nguồn không chính thức.
+          </p>
+          <h3>3. An toàn và bảo mật</h3>
+          <p>
+            Ban tổ chức phải đảm bảo an toàn cho người tham gia, bao gồm biện
+            pháp phòng cháy chữa cháy, bảo vệ thông tin cá nhân theo Luật An
+            ninh mạng 2018.
+          </p>
+          <h3>4. Hủy bỏ hoặc hoãn sự kiện</h3>
+          <p>
+            Trong trường hợp hủy bỏ, ban tổ chức phải hoàn tiền vé trong vòng 14
+            ngày làm việc. Nếu hoãn, thông báo phải được gửi trước ít nhất 5
+            ngày.
+          </p>
+          <h3>5. Trách nhiệm pháp lý</h3>
+          <p>
+            Ban tổ chức chịu trách nhiệm bồi thường thiệt hại nếu vi phạm hợp
+            đồng hoặc gây thiệt hại cho người tham gia do lỗi cố ý hoặc bất cẩn.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
