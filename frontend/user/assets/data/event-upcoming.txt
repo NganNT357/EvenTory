@@ -1,0 +1,44 @@
+[
+  {
+    "img": "assets/img/event-upcoming1.jpg",
+    "month": "MAY",
+    "day": "01",
+    "title": "Countdown Summer Fest 2025 - Hồ Tràm",
+    "desc": "Chào hè cực cháy cùng dàn DJ quốc tế tại Hồ Tràm, Bà Rịa – Vũng Tàu."
+  },
+  {
+    "img": "assets/img/event-upcoming2.jpg",
+    "month": "MAY",
+    "day": "04",
+    "title": "Rap Việt All Star Live Concert 2025 - TP.HCM",
+    "desc": "Sân khấu bùng nổ với Binz, Rhymastic, Suboi và dàn sao Rap Việt."
+  },
+  {
+    "img": "assets/img/event-upcoming3.jpg",
+    "month": "MAY",
+    "day": "10",
+    "title": "Mono Live Tour - Hà Nội",
+    "desc": "Show diễn đầu tiên trong chuỗi tour toàn quốc của MONO."
+  },
+  {
+    "img": "assets/img/event-upcoming4.jpg",
+    "month": "MAY",
+    "day": "18",
+    "title": "Vietnam Tattoo Expo 2025 - Hà Nội",
+    "desc": "Lễ hội hình xăm lớn nhất Việt Nam với các nghệ sĩ quốc tế."
+  },
+  {
+    "img": "assets/img/event-upcoming5.jpg",
+    "month": "MAY",
+    "day": "24",
+    "title": "ASEAN Music Showcase Festival 2025 - Đà Nẵng",
+    "desc": "Festival âm nhạc khu vực Đông Nam Á, lần đầu tổ chức tại Việt Nam."
+  },
+  {
+    "img": "assets/img/event-upcoming6.jpg",
+    "month": "JUN",
+    "day": "01",
+    "title": "Lễ hội Trái cây Nam Bộ 2025 - Suối Tiên",
+    "desc": "Tham quan - ẩm thực - diễu hành trái cây cực hấp dẫn tại TP.HCM."
+  }
+]
