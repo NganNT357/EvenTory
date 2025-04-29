@@ -153,20 +153,6 @@ footer {
   color: var(--color-primary);
   background-color: var(--color-hover-gray);
 }
-/* cũ */
-/* .nav-links .btn-login {
-  padding: 10px 20px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-.btn-login:hover {
-  background-color: var(--color-primary-light);
-} */
 
 .nav-links .btn-login {
   padding: 10px 20px;
@@ -197,8 +183,6 @@ footer {
   }
 }
 
-
-
 /* ===== MAIN CONTENT ===== */
 /* banner section */
 .banner-section {
@@ -218,7 +202,7 @@ footer {
   height: 500px;
   position: relative;
   background-color: black;
-  object-fit: contain; /* Co video lại để thấy toàn bộ */
+  object-fit: contain;
   display: block;
   border-radius: 12px;
   transition: opacity 0.4s ease-in-out;
@@ -335,8 +319,8 @@ footer {
   flex-direction: column;
 }
 .event-card:hover {
-  transform: translateY(-6px) scale(1.02); /* hiệu ứng nảy nhẹ */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* bóng đậm sáng hơn */
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .event-card img {
@@ -434,14 +418,20 @@ footer {
 
 .carousel-viewport {
   position: relative;
-  overflow: hidden;
   padding: 0 103px;
 }
 
 .carousel-track {
   display: flex;
   gap: 16px;
-  transition: transform 0.5s ease-in-out;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
 }
 
 .trend-card-wrapper {
@@ -493,7 +483,7 @@ footer {
 
 .carousel-nav {
   position: absolute;
-  top: 50%;
+  top: 120px; /* Center of card height (approx 240px / 2) */
   transform: translateY(-50%);
   background: white;
   border: none;
@@ -518,7 +508,19 @@ footer {
   right: 103px;
 }
 
-/* thiếu gì ở đây nè */
+/* event special section */
+.event-special-section {
+  background-color: #fff1f1;
+  padding: 48px 0;
+}
+
+.event-special-section .trend-caption {
+  padding: 12px 8px;
+}
+
+.event-special-section .trend-caption .trend-title {
+  margin-top: 0; /* Remove margin-top since rank is removed */
+}
 
 /* infinite-logo-section */
 .infinite-logo-section {

@@ -1,62 +1,62 @@
 [
   {
-    "img": "assets/img/event1.jpg",
+    "img": "assets/img/poster1.jpg",
     "rank": 1,
-    "title": "Wonder Girls 2010 Wonder Girls World Tour",
-    "date": "14 APR"
+    "title": "BABYMONSTER - Hello Monsters Tour",
+    "date": "2025-05-31"
   },
   {
-    "img": "assets/img/event2.jpg",
+    "img": "assets/img/poster-bts.jpg",
     "rank": 2,
-    "title": "BTS Map Of The Soul Tour - Seoul",
-    "date": "18 APR"
+    "title": "BTS - Map Of The Soul Tour",
+    "date": "2025-06-12"
   },
   {
-    "img": "assets/img/event3.jpg",
+    "img": "assets/img/poster3.jpg",
     "rank": 3,
-    "title": "Super Junior World Tour - TP.HCM",
-    "date": "21 APR"
+    "title": "EXID - 2025 World Tour",
+    "date": "2025-06-20"
   },
   {
-    "img": "assets/img/event4.jpg",
+    "img": "assets/img/poster2.jpg",
     "rank": 4,
-    "title": "BLACKPINK Encore Tour - Hà Nội",
-    "date": "23 APR"
+    "title": "SOOBIN Live Concert 2025",
+    "date": "2025-07-01"
   },
   {
     "img": "assets/img/event5.jpg",
     "rank": 5,
     "title": "IU Golden Hour Concert - Seoul",
-    "date": "26 APR"
+    "date": "2025-07-01"
   },
   {
     "img": "assets/img/event6.jpg",
     "rank": 6,
     "title": "Mono Live Tour 2025 - Đà Nẵng",
-    "date": "28 APR"
+    "date": "2025-07-01"
   },
   {
     "img": "assets/img/event7.jpg",
     "rank": 7,
     "title": "Zing Music Awards 2025 - TP.HCM",
-    "date": "01 MAY"
+    "date": "2025-07-01"
   },
   {
     "img": "assets/img/event8.jpg",
     "rank": 8,
     "title": "Rap Việt All Stars - TP.HCM",
-    "date": "03 MAY"
+    "date": "2025-07-01"
   },
   {
     "img": "assets/img/event9.jpg",
     "rank": 9,
     "title": "ASEAN Music Festival 2025 - Đà Nẵng",
-    "date": "05 MAY"
+    "date": "2025-07-01"
   },
   {
     "img": "assets/img/event10.jpg",
     "rank": 10,
     "title": "Lễ hội EDM Hồ Tràm - Summer Vibes",
-    "date": "07 MAY"
+    "date": "2025-07-01"
   }
 ]

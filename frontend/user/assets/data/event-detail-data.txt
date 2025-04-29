@@ -210,8 +210,8 @@
     "id": "blackpink-encore",
     "title": "BLACKPINK Encore Tour - Vietnam",
     "city": "TP.HCM",
-    "poster": "assets/img/poster-blackpink.jpg",
-    "video": "assets/img/blackpink.mp4",
+    "poster": "assets/img/poster-blackpink-encore.jpg",
+    "video": "assets/img/banner4.mp4",
     "intro": "BLACKPINK chính thức tổ chức encore concert cực hoành tráng tại Việt Nam.",
     "event_info": {
       "date": "2025-07-25",
