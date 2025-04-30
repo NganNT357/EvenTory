@@ -1,3 +1,23 @@
+// ===== header =====
+document.addEventListener("DOMContentLoaded", () => {
+  let lastScrollY = window.pageYOffset;
+  const header = document.querySelector(".site-header");
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.pageYOffset;
+
+    if (currentScrollY <= 0) {
+      header.style.transform = "translateY(0)";
+    } else if (currentScrollY > lastScrollY) {
+      header.style.transform = "translateY(-100%)";
+    } else {
+      header.style.transform = "translateY(0)";
+    }
+
+    lastScrollY = currentScrollY;
+  });
+});
+
 // ===== banner section =====
 document.addEventListener("DOMContentLoaded", () => {
   const bannerVideo = document.getElementById("bannerVideo");
@@ -10,7 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let allEventData = [];
   let currentIndex = 0;
 
-  const selectedIds = ["babymonster", "soobin-concert", "exid-live", "blackpink-encore"];
+  const selectedIds = [
+    "babymonster",
+    "soobin-concert",
+    "exid-live",
+    "blackpink-encore",
+  ];
 
   fetch("assets/data/event-detail-data.txt")
     .then((response) => response.text())
@@ -49,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     bannerVideo.muted = true;
     volumeIcon.textContent = "volume_off";
 
-    detailButton.href = `event-detail.html?eventId=${eventItem.id}`;
+    detailButton.href = `pages/event-detail.html?eventId=${eventItem.id}`;
 
     dots.forEach((dot) => dot.classList.remove("active"));
     if (dots[index]) dots[index].classList.add("active");
@@ -82,7 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Check if the more button exists
   if (!moreButton || !moreButtonWrapper) {
-    console.error("Không tìm thấy nút 'Xem thêm'. Vui lòng kiểm tra HTML: .event-more-btn và .more-button.");
+    console.error(
+      "Không tìm thấy nút 'Xem thêm'. Vui lòng kiểm tra HTML: .event-more-btn và .more-button."
+    );
     return;
   }
 
@@ -159,8 +186,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===== event trend section =====
 document.addEventListener("DOMContentLoaded", async () => {
   const track = document.getElementById("carouselTrack");
-  const nextBtn = document.querySelector(".event-trend-section .carousel-nav.next");
-  const prevBtn = document.querySelector(".event-trend-section .carousel-nav.prev");
+  const nextBtn = document.querySelector(
+    ".event-trend-section .carousel-nav.next"
+  );
+  const prevBtn = document.querySelector(
+    ".event-trend-section .carousel-nav.prev"
+  );
   let scrollPosition = 0;
   const cardWidth = 270; // Width of each card
   const gap = 16; // Gap between cards
@@ -208,12 +239,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-
 // ===== event special section =====
 document.addEventListener("DOMContentLoaded", async () => {
   const track = document.getElementById("specialTrack");
-  const nextBtn = document.querySelector(".event-special-section .carousel-nav.next");
-  const prevBtn = document.querySelector(".event-special-section .carousel-nav.prev");
+  const nextBtn = document.querySelector(
+    ".event-special-section .carousel-nav.next"
+  );
+  const prevBtn = document.querySelector(
+    ".event-special-section .carousel-nav.prev"
+  );
   let scrollPosition = 0;
   const cardWidth = 270; // Width of each card
   const gap = 16; // Gap between cards

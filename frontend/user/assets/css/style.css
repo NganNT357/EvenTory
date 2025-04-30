@@ -1,8 +1,8 @@
 :root {
   --font-logo: "Praise", cursive;
   --font-logo-2: "Oleo Script", system-ui;
-
   --font-primary: "Roboto", sans-serif;
+
   --color-primary: #a72a7c;
   --color-primary-light: #d451a1;
   --color-primary-light-2: #f13781;
@@ -81,9 +81,15 @@ footer {
   border-bottom: 1px solid var(--color-border-soft);
   padding: 16px 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  transition: transform 0.3s ease-in-out;
 }
 
-.container {
+.site-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,6 +122,7 @@ footer {
   align-items: center;
   border-radius: 16px;
   overflow: hidden;
+  height: 37px;
 }
 .search-bar input {
   border: none;
@@ -123,6 +130,7 @@ footer {
   outline: none;
   min-width: 240px;
   width: 300px;
+  height: 100%;
 }
 .search-bar input::placeholder {
   font-size: 14px;
@@ -132,6 +140,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  transition: background-color 0.2s;
 }
 .search-bar button:hover {
   background-color: var(--color-primary-light);
@@ -142,16 +152,32 @@ footer {
   align-items: center;
   gap: 16px;
 }
+
 .nav-links a {
+  position: relative;
   color: white;
   font-weight: 500;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  transition: color 0.3s ease;
   padding: 8px 12px;
   border-radius: 16px;
+  text-decoration: none;
 }
-.nav-links a:hover {
-  color: var(--color-primary);
-  background-color: var(--color-hover-gray);
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  width: 80%;
+  left: 11%;
+}
+.nav-links a:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-links .btn-login {
@@ -167,7 +193,11 @@ footer {
   overflow: hidden;
 }
 .btn-login:hover {
-  background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-2));
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary),
+    var(--color-secondary-2)
+  );
   color: white;
   animation: glow 0.7s infinite alternate;
 }
@@ -176,7 +206,8 @@ footer {
     box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
   }
   50% {
-    box-shadow: 0 0 15px var(--color-primary-light), 0 0 25px var(--color-primary-light);
+    box-shadow: 0 0 15px var(--color-primary-light),
+      0 0 25px var(--color-primary-light);
   }
   100% {
     box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
@@ -184,6 +215,10 @@ footer {
 }
 
 /* ===== MAIN CONTENT ===== */
+#main-content {
+  padding-top: 81px;
+}
+
 /* banner section */
 .banner-section {
   width: 100%;
@@ -282,19 +317,25 @@ footer {
 /* event upcoming section */
 .event-upcoming-section {
   background-color: #fff1f1;
-  padding: 48px 24px;
+  padding: 48px 0;
   text-align: center;
 }
 
 .event-upcoming-header {
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 80px;
-  margin-bottom: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
 }
 .event-upcoming-section .section-title {
+  font-size: 24px;
   font-weight: bold;
   color: var(--color-primary, #a72a7c);
+  margin-left: 0;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .event-grid {
@@ -405,7 +446,8 @@ footer {
   padding: 48px 0;
 }
 
-.section-title {
+.event-trend-section .section-title,
+.event-special-section .section-title {
   font-size: 24px;
   font-weight: bold;
   color: var(--color-primary, #a72a7c);
@@ -522,7 +564,7 @@ footer {
   margin-top: 0; /* Remove margin-top since rank is removed */
 }
 
-/* infinite-logo-section */
+/* infinite logo section */
 .infinite-logo-section {
   background: #fff;
   padding: 60px 0;
@@ -531,6 +573,7 @@ footer {
 }
 
 .infinite-title h2 {
+  font-size: 24px;
   font-weight: bold;
   color: var(--color-primary);
   margin-bottom: 18px;
@@ -559,7 +602,8 @@ footer {
   );
 }
 
-.itemLeft, .itemRight {
+.itemLeft,
+.itemRight {
   width: 200px;
   height: 70px;
   position: absolute;
@@ -568,7 +612,8 @@ footer {
   animation-iteration-count: infinite;
 }
 
-.itemLeft img, .itemRight img {
+.itemLeft img,
+.itemRight img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -651,7 +696,7 @@ footer h4 {
   width: 40px;
   height: 40px;
   margin-bottom: 15px;
-  border: 1px solid white ;
+  border: 1px solid white;
   border-radius: 50%;
 }
 .footer-logo p {
@@ -719,13 +764,21 @@ footer h4 {
 .footer-contact .material-symbols-rounded,
 .footer-form .material-symbols-rounded {
   font-size: 24px;
-  background: linear-gradient(to right, var(--color-secondary), var(--color-secondary-2));
+  background: linear-gradient(
+    to right,
+    var(--color-secondary),
+    var(--color-secondary-2)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
 .footer-form button:hover {
-  background: linear-gradient(to right, var(--color-secondary-2), var(--color-primary));
+  background: linear-gradient(
+    to right,
+    var(--color-secondary-2),
+    var(--color-primary)
+  );
 }
 .footer-form button:hover .material-symbols-rounded {
   color: white;
@@ -783,7 +836,11 @@ footer h4 {
   overflow: hidden;
 }
 .footer-socials a:hover {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light-2));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-light-2)
+  );
   color: white;
   animation: pulse-gradient 1.5s infinite;
 }
@@ -815,3 +872,309 @@ footer h4 {
 .footer-copy strong {
   color: white;
 }
+
+/* =============== EVENT DETAIL ===============*/
+/* event banner */
+.event-banner {
+  position: relative;
+  margin: 16px auto;
+  height: 500px;
+  overflow: hidden;
+  background-color: transparent;
+}
+.event-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* event detail content */
+.event-content {
+  padding: 48px 0;
+  margin: 0 50px;
+}
+
+.event-content-wrapper {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+/* LEFT COLUMN: info */
+.event-info-left {
+  position: relative;
+  overflow: visible;
+  flex: 2;
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 24px;
+  padding: 30px 24px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.event-info-left .info-section {
+  margin-top: 20px;
+}
+.event-info-left h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.event-info-left p {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.info-title-circle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  padding: 0 20px;
+  height: 40px;
+  width: auto;
+  line-height: 35px;
+  background: white;
+  border: 2px solid var(--color-primary);
+  border-radius: 20px;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 18px;
+}
+.info-title-circle span {
+  font-size: 18px;
+}
+
+#promotion-cond {
+  color: var(--color-text-light);
+}
+#organizer-logo {
+  display: block;
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+/* RIGHT COLUMN: quảng cáo */
+.event-info-right {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.event-info-right img {
+  display: block;
+  width: 290px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Event Ticket Section */
+.event-ticket {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  padding: 32px 24px 0 24px;
+  background: #27272a;
+  color: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.event-ticket h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+.event-ticket p {
+  margin-bottom: 0;
+}
+
+.event-ticket .ticket-sale-time {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.ticket-table {
+  width: calc(100% + 48px);
+  border-collapse: collapse;
+  border-radius: 0 0 24px 24px;
+  margin: 15px -24px 0 -24px;
+  table-layout: fixed;
+  overflow: hidden;
+}
+.ticket-table tr:nth-child(odd) {
+  background-color: #2e2f32;
+}
+.ticket-table tr:nth-child(even) {
+  background-color: #37373c;
+}
+
+.ticket-table td {
+  padding: 12px 24px;
+  color: #fff;
+  font-weight: 500;
+  vertical-align: top;
+}
+.ticket-table td:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  white-space: nowrap;
+}
+
+/* xử lí giá vé */
+.ticket-table .sold-out {
+  display: block;
+  margin-top: 4px;
+  background-color: #f0ad4e;
+  color: #212529;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+  float: right;
+}
+.ticket-table tr.ticket-available .ticket-price {
+  color: var(--color-primary-light-2);
+}
+.ticket-table tr.ticket-soldout .ticket-price {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* #buy-ticket-btn {
+  position: absolute;
+  top: 32px;
+  right: 24px;
+  --start: #ff3366;
+  --mid: #ff66aa;
+  --end: #ff3366;
+
+  background: linear-gradient(90deg, var(--start), var(--mid), var(--end));
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  overflow: hidden;
+  transition: background-position 0.5s ease,
+    transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.25s ease;
+}
+
+#buy-ticket-btn:hover {
+  background-position: 100% 0%;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+#buy-ticket-btn:active {
+  transform: translateY(-1px) scale(0.98);
+  filter: brightness(1.2);
+}
+
+#buy-ticket-btn .ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  pointer-events: none;
+}
+@keyframes ripple {
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+} */
+#buy-ticket-btn {
+  --start: #ff3366;
+  --mid: #ff66aa;
+  --end: #ff3366;
+
+  position: absolute;
+  top: 32px;
+  right: 24px;
+  padding: 12px 24px;
+  color: #fff;
+  background: #27272a;
+  border: 4px solid transparent;
+  border-radius: 999px;
+  overflow: hidden;
+  z-index: 0;
+  box-shadow: 0 0 10px var(--mid);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#buy-ticket-btn::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    var(--start),
+    var(--mid),
+    var(--end),
+    var(--start)
+  );
+  animation: rotate-border 4s linear infinite;
+  z-index: -2;
+}
+
+#buy-ticket-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #27272a;
+  border-radius: inherit;
+  z-index: -1;
+}
+@keyframes rotate-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#buy-ticket-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, var(--start), var(--mid), var(--end));
+}
+#buy-ticket-btn:hover::before {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+#buy-ticket-btn .ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  pointer-events: none;
+}
+@keyframes ripple {
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
+
+/* Gợi ý dành cho bạn */

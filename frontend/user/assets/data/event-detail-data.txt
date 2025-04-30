@@ -26,18 +26,28 @@
     },
     "organizer": {
       "name": "Live Nation Vietnam",
-      "logo": "assets/img/brands/mec.jpg"
+      "logo": "/assets/img/brands/mec.png"
     },
     "tickets": [
       {
-        "type": "VIP PACKAGE",
+        "type": "VIP PACKAGE - L",
         "price": 5500000,
         "quantity": 200
       },
       {
-        "type": "STANDARD",
-        "price": 3200000,
-        "quantity": 800
+        "type": "CAT 1 - L",
+        "price": 4200000,
+        "quantity": 200
+      },
+      {
+        "type": "CAT 2 - L",
+        "price": 3400000,
+        "quantity": 150
+      },
+      {
+        "type": "CAT 3 - L",
+        "price": 2800000,
+        "quantity": 0
       }
     ]
   },
