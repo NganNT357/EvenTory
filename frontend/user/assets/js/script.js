@@ -18,6 +18,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// ===== Login Popup (chỉ áp dụng cho index.html) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const loginPopup = document.getElementById("loginPopup");
+  const loginBtn = document.getElementById("loginBtn");
+  const createEventBtn = document.getElementById("createEventBtn");
+  const closePopup = document.getElementById("closePopup");
+  const continueBtn = document.getElementById("continueBtn");
+  let redirectAfterLogin = "index.html"; // Mặc định chuyển hướng về trang chính
+
+  if (loginPopup && closePopup && continueBtn && window.location.pathname.includes("index.html")) {
+    // Mở popup khi nhấn "Login"
+    if (loginBtn) {
+      loginBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        redirectAfterLogin = "index.html";
+        loginPopup.style.display = "flex";
+      });
+    }
+
+    // Mở popup khi nhấn "Tạo sự kiện"
+    if (createEventBtn) {
+      createEventBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        redirectAfterLogin = "pages/create-event.html";
+        loginPopup.style.display = "flex";
+      });
+    }
+
+    // Đóng popup khi nhấn nút "X"
+    closePopup.addEventListener("click", () => {
+      loginPopup.style.display = "none";
+    });
+
+    // Đóng popup khi nhấn ra ngoài nội dung popup
+    loginPopup.addEventListener("click", (e) => {
+      if (e.target === loginPopup) {
+        loginPopup.style.display = "none";
+      }
+    });
+
+    // Xử lý đăng nhập ảo
+    continueBtn.addEventListener("click", () => {
+      loginPopup.style.display = "none";
+      window.location.href = redirectAfterLogin;
+    });
+  }
+});
+
 // ===== banner section =====
 document.addEventListener("DOMContentLoaded", () => {
   const bannerVideo = document.getElementById("bannerVideo");
@@ -74,7 +122,12 @@ document.addEventListener("DOMContentLoaded", () => {
     bannerVideo.muted = true;
     volumeIcon.textContent = "volume_off";
 
+    // Cập nhật href để mở tab mới
     detailButton.href = `pages/event-detail.html?eventId=${eventItem.id}`;
+    detailButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.open(detailButton.href, "_blank");
+    });
 
     dots.forEach((dot) => dot.classList.remove("active"));
     if (dots[index]) dots[index].classList.add("active");
@@ -101,112 +154,109 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("eventGrid");
   const moreButtonWrapper = document.querySelector(".event-more-btn");
   const moreButton = document.querySelector(".event-more-btn .more-button");
-  let buttonIcon = moreButton.querySelector(".button-icon"); // Ban đầu lấy element icon
+  let buttonIcon = moreButton.querySelector(".button-icon");
   const buttonText = moreButton.querySelector(".button-text");
-  const eventSection = document.querySelector(".event-upcoming-section"); // Lấy section để cuộn về
+  const eventSection = document.querySelector(".event-upcoming-section");
   let allEvents = [];
-  let displayedEvents = 6; // Initially display 6 events
-  const eventsPerLoad = 6; // Number of events to show initially
-  let isExpanded = false; // Trạng thái hiện tại (đã mở rộng hay chưa)
+  let displayedEvents = 6;
+  const eventsPerLoad = 6;
+  let isExpanded = false;
+  const currentDate = new Date("2025-05-01"); // Ngày hiện tại
 
-  // Check if the more button and its components exist
   if (!moreButton || !moreButtonWrapper || !buttonIcon || !buttonText || !eventSection) {
     console.error(
-      "Không tìm thấy nút 'Xem thêm', các thành phần của nó, hoặc section 'event-upcoming-section'. Vui lòng kiểm tra HTML."
+      "Không tìm thấy nút 'Xem thêm', các thành phần của nó, hoặc section 'event-upcoming-section'."
     );
     return;
   }
 
-  // Initially show the "Xem thêm" button
   moreButtonWrapper.style.display = "block";
-  console.log("Nút 'Xem thêm' được hiển thị ban đầu (theo JS).");
 
-  fetch("assets/data/event-upcoming.txt")
-    .then((response) => response.json())
-    .then((events) => {
-      allEvents = events;
-      console.log(`Đã tải ${allEvents.length} sự kiện từ event-upcoming.txt`);
+  fetch("assets/data/event-detail-data.txt")
+    .then((response) => response.text())
+    .then((text) => {
+      allEvents = JSON.parse(text);
 
-      // Function to render events
+      // Lọc các sự kiện có ngày diễn ra trong tương lai
+      allEvents = allEvents.filter((event) => {
+        const eventDate = new Date(event.event_info.date);
+        return eventDate >= currentDate;
+      });
+
+      // Sắp xếp theo ngày tăng dần (gần nhất trước)
+      allEvents.sort((a, b) => {
+        const dateA = new Date(a.event_info.date);
+        const dateB = new Date(b.event_info.date);
+        return dateA - dateB;
+      });
+
+      console.log(`Đã tải ${allEvents.length} sự kiện từ event-detail-data.txt (Sự kiện sắp tới)`);
+
       const renderEvents = (eventList) => {
-        container.innerHTML = ""; // Xóa danh sách hiện tại trước khi render lại
+        container.innerHTML = "";
         eventList.forEach((event) => {
+          const eventDate = new Date(event.event_info.date);
+          const month = eventDate.toLocaleString("default", { month: "short" }).toUpperCase();
+          const day = eventDate.getDate();
+
           const card = document.createElement("div");
           card.className = "event-card";
           card.innerHTML = `
-            <img src="${event.img}" alt="${event.title}">
+            <img src="${event.poster}" alt="${event.title}">
             <div class="event-info">
               <div class="event-date">
-                <span class="month">${event.month}</span>
-                <span class="day">${event.day}</span>
+                <span class="month">${month}</span>
+                <span class="day">${day}</span>
               </div>
               <div class="event-text">
                 <h3 class="event-title">${event.title}</h3>
-                <p class="event-desc">${event.desc}</p>
+                <p class="event-desc">${event.intro}</p>
               </div>
             </div>
           `;
+          card.addEventListener("click", () => {
+            window.open(`pages/event-detail.html?eventId=${event.id}`, "_blank");
+          });
           container.appendChild(card);
         });
       };
 
-      // Initially render the first 6 events (or fewer if less than 6)
       const initialEvents = allEvents.slice(0, displayedEvents);
       renderEvents(initialEvents);
-      console.log(`Đã hiển thị ${initialEvents.length} sự kiện ban đầu.`);
 
-      // Show or hide the "Xem thêm" button based on the number of events
       if (allEvents.length <= eventsPerLoad) {
-        console.log("Số lượng sự kiện <= 6, ẩn nút 'Xem thêm'.");
         moreButtonWrapper.style.display = "none";
       } else {
-        console.log("Số lượng sự kiện > 6, hiển thị nút 'Xem thêm'.");
         moreButtonWrapper.style.display = "block";
       }
 
-      // Add click event for "Xem thêm" / "Thu gọn" button
       moreButton.addEventListener("click", () => {
         if (!isExpanded) {
-          // Hiển thị tất cả sự kiện (trạng thái "Xem thêm")
-          console.log("Nút 'Xem thêm' được nhấn, hiển thị các sự kiện còn lại.");
           renderEvents(allEvents);
-          console.log(`Đã hiển thị tất cả ${allEvents.length} sự kiện.`);
 
-          // Thay thế toàn bộ element icon để buộc render lại
           const newIconExpand = document.createElement("span");
           newIconExpand.className = "material-symbols-rounded button-icon";
           newIconExpand.textContent = "expand_less";
           buttonIcon.replaceWith(newIconExpand);
-          buttonIcon = newIconExpand; // Cập nhật tham chiếu đến element mới
+          buttonIcon = newIconExpand;
 
           buttonText.textContent = "Thu gọn";
           moreButton.classList.add("collapsed");
-          console.log("Trạng thái: Đã mở rộng (isExpanded = true)");
-          console.log("Icon hiện tại:", buttonIcon.textContent);
-
           isExpanded = true;
         } else {
-          // Thu gọn về trạng thái ban đầu (trạng thái "Thu gọn")
-          console.log("Nút 'Thu gọn' được nhấn, quay lại trạng thái ban đầu.");
           const initialEvents = allEvents.slice(0, displayedEvents);
           renderEvents(initialEvents);
-          console.log(`Đã thu gọn về ${initialEvents.length} sự kiện.`);
 
-          // Thay thế toàn bộ element icon để buộc render lại
           const newIconCollapse = document.createElement("span");
           newIconCollapse.className = "material-symbols-rounded button-icon";
           newIconCollapse.textContent = "expand_more";
           buttonIcon.replaceWith(newIconCollapse);
-          buttonIcon = newIconCollapse; // Cập nhật tham chiếu đến element mới
+          buttonIcon = newIconCollapse;
 
           buttonText.textContent = "Xem thêm";
           moreButton.classList.remove("collapsed");
-          console.log("Trạng thái: Đã thu gọn (isExpanded = false)");
-          console.log("Icon hiện tại:", buttonIcon.textContent);
 
-          // Cuộn về đầu section "Các sự kiện sắp diễn ra"
           eventSection.scrollIntoView({ behavior: "smooth", block: "start" });
-          console.log("Đã cuộn về đầu section 'Các sự kiện sắp diễn ra'.");
 
           isExpanded = false;
         }
@@ -214,7 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => {
       console.error("Lỗi tải dữ liệu sự kiện sắp diễn ra:", error);
-      console.log("Dữ liệu không tải được, kiểm tra file event-upcoming.txt.");
       moreButtonWrapper.style.display = "block";
     });
 });
@@ -229,35 +278,43 @@ document.addEventListener("DOMContentLoaded", async () => {
     ".event-trend-section .carousel-nav.prev"
   );
   let scrollPosition = 0;
-  const cardWidth = 270; // Width of each card
-  const gap = 16; // Gap between cards
-  const cardsToScroll = 3; // Number of cards to scroll at a time
+  const cardWidth = 270;
+  const gap = 16;
+  const cardsToScroll = 3;
   const scrollAmount = (cardWidth + gap) * cardsToScroll;
+  const currentDate = new Date("2025-05-01");
 
   try {
-    // Fetch event-trend.txt
-    const response = await fetch("assets/data/event-trend.txt");
-    const trendEvents = await response.json();
+    const response = await fetch("assets/data/event-detail-data.txt");
+    let trendEvents = await response.json();
 
-    // Render all trend events without filtering
+    // Sắp xếp theo ngày gần nhất
+    trendEvents.sort((a, b) => {
+      const dateA = new Date(a.event_info.date);
+      const dateB = new Date(b.event_info.date);
+      return Math.abs(dateA - currentDate) - Math.abs(dateB - currentDate);
+    });
+
+    // Giới hạn số lượng sự kiện (ví dụ: 10 sự kiện xu hướng)
+    trendEvents = trendEvents.slice(0, 10);
+
     trendEvents.forEach((event, i) => {
       const card = document.createElement("div");
       card.className = "trend-card-wrapper";
       card.innerHTML = `
-        <img src="${event.img}" alt="${event.title}" />
+        <img src="${event.poster}" alt="${event.title}" />
         <div class="trend-caption">
           <div class="trend-rank">${i + 1}</div>
           <div class="trend-title">${event.title}</div>
-          <div class="trend-date">${event.date}</div>
+          <div class="trend-date">${event.event_info.date}</div>
         </div>
       `;
       card.addEventListener("click", () => {
-        window.location.href = `event-detail.html?eventId=${event.id}`;
+        window.open(`pages/event-detail.html?eventId=${event.id}`, "_blank");
       });
       track.appendChild(card);
     });
 
-    // Update scroll position limits after cards are added
     const maxScroll = track.scrollWidth - track.clientWidth;
     nextBtn.addEventListener("click", () => {
       scrollPosition += scrollAmount;
@@ -285,32 +342,48 @@ document.addEventListener("DOMContentLoaded", async () => {
     ".event-special-section .carousel-nav.prev"
   );
   let scrollPosition = 0;
-  const cardWidth = 270; // Width of each card
-  const gap = 16; // Gap between cards
-  const cardsToScroll = 3; // Number of cards to scroll at a time
+  const cardWidth = 270;
+  const gap = 16;
+  const cardsToScroll = 3;
   const scrollAmount = (cardWidth + gap) * cardsToScroll;
 
   try {
-    const response = await fetch("assets/data/event-special.txt");
-    const events = await response.json();
+    const response = await fetch("assets/data/event-detail-data.txt");
+    let events = await response.json();
+
+    // Lọc các sự kiện đặc biệt: Có vé VIP hoặc giá vé cao nhất
+    events = events.filter((event) => {
+      return event.tickets.some((ticket) => 
+        ticket.type.toLowerCase().includes("vip") || ticket.price >= 5000000
+      );
+    });
+
+    // Sắp xếp theo giá vé cao nhất (giảm dần)
+    events.sort((a, b) => {
+      const maxPriceA = Math.max(...a.tickets.map(t => t.price));
+      const maxPriceB = Math.max(...b.tickets.map(t => t.price));
+      return maxPriceB - maxPriceA;
+    });
+
+    // Giới hạn số lượng sự kiện (ví dụ: 5 sự kiện đặc biệt)
+    events = events.slice(0, 5);
 
     events.forEach((event, i) => {
       const card = document.createElement("div");
       card.className = "trend-card-wrapper";
       card.innerHTML = `
-        <img src="${event.img}" alt="${event.title}" />
+        <img src="${event.poster}" alt="${event.title}" />
         <div class="trend-caption">
           <div class="trend-title">${event.title}</div>
-          <div class="trend-date">${event.date}</div>
+          <div class="trend-date">${event.event_info.date}</div>
         </div>
       `;
       card.addEventListener("click", () => {
-        window.location.href = `event-detail.html?eventId=${event.id}`;
+        window.open(`pages/event-detail.html?eventId=${event.id}`, "_blank");
       });
       track.appendChild(card);
     });
 
-    // Update scroll position limits after cards are added
     const maxScroll = track.scrollWidth - track.clientWidth;
     nextBtn.addEventListener("click", () => {
       scrollPosition += scrollAmount;
@@ -327,5 +400,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Lỗi tải dữ liệu sự kiện đặc biệt:", error);
   }
 });
-
-

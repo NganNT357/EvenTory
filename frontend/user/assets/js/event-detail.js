@@ -16,6 +16,77 @@ window.addEventListener("scroll", () => {
   lastScrollY = currentScrollY;
 });
 
+// ===== Login Popup (cho cả header và nút "Mua vé ngay") =====
+document.addEventListener("DOMContentLoaded", () => {
+  const loginPopup = document.getElementById("loginPopup");
+  const loginBtn = document.getElementById("loginBtn");
+  const createEventBtn = document.getElementById("createEventBtn");
+  const buyTicketBtn = document.getElementById("buy-ticket-btn");
+  const closePopup = document.getElementById("closePopup");
+  const continueBtn = document.getElementById("continueBtn");
+  let redirectAfterLogin = "../index.html"; // Mặc định chuyển hướng về trang chính
+
+  if (loginPopup && closePopup && continueBtn) {
+    // Mở popup khi nhấn "Login" (trong header)
+    if (loginBtn) {
+      loginBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        redirectAfterLogin = "../index.html";
+        loginPopup.style.display = "flex";
+      });
+    }
+
+    // Mở popup khi nhấn "Tạo sự kiện" (trong header)
+    if (createEventBtn) {
+      createEventBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        redirectAfterLogin = "../pages/create-event.html";
+        loginPopup.style.display = "flex";
+      });
+    }
+
+    // Mở popup khi nhấn "Mua vé ngay"
+    if (buyTicketBtn) {
+      buyTicketBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        redirectAfterLogin = "../index.html"; // Có thể thay đổi thành trang mua vé nếu có
+        loginPopup.style.display = "flex";
+
+        // Hiệu ứng ripple
+        const ripple = document.createElement("span");
+        ripple.classList.add("ripple");
+        buyTicketBtn.appendChild(ripple);
+
+        const rect = buyTicketBtn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + "px";
+        ripple.style.left = e.clientX - rect.left - size / 2 + "px";
+        ripple.style.top = e.clientY - rect.top - size / 2 + "px";
+
+        ripple.addEventListener("animationend", () => ripple.remove());
+      });
+    }
+
+    // Đóng popup khi nhấn nút "X"
+    closePopup.addEventListener("click", () => {
+      loginPopup.style.display = "none";
+    });
+
+    // Đóng popup khi nhấn ra ngoài nội dung popup
+    loginPopup.addEventListener("click", (e) => {
+      if (e.target === loginPopup) {
+        loginPopup.style.display = "none";
+      }
+    });
+
+    // Xử lý đăng nhập ảo
+    continueBtn.addEventListener("click", () => {
+      loginPopup.style.display = "none";
+      window.location.href = redirectAfterLogin;
+    });
+  }
+});
+
 // ===== event detail content =====
 (async () => {
   // 1. Lấy eventId từ URL

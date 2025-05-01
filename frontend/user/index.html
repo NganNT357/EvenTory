@@ -36,7 +36,6 @@
     />
     <!-- Assets -->
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="./assets/js/script.js"></script>
     <title>EvenTory</title>
   </head>
 
@@ -59,13 +58,37 @@
         </div>
 
         <nav class="nav-links">
-          <a href="#">Tạo sự kiện</a>
+          <a href="#" id="createEventBtn">Tạo sự kiện</a>
           <a href="#">Mua vé</a>
           <a href="#">Liên hệ</a>
-          <button class="btn-login">Login</button>
+          <button class="btn-login" id="loginBtn">Login</button>
         </nav>
       </div>
     </header>
+
+    <!-- Popup Đăng nhập -->
+    <div class="login-popup" id="loginPopup">
+      <div class="login-popup-content">
+        <span class="close-popup" id="closePopup">×</span>
+        <h2>Đăng nhập</h2>
+        <div class="login-form">
+          <label>Email hoặc số điện thoại</label>
+          <input type="text" id="emailInput" placeholder="Email hoặc số điện thoại">
+          <label>Mật khẩu</label>
+          <input type="password" id="passwordInput" placeholder="Mật khẩu">
+          <button class="continue-btn" id="continueBtn">Tiếp tục</button>
+          <a href="#" class="forgot-password">Quên mật khẩu?</a>
+          <p class="signup-link">Chưa có tài khoản? <a href="#">Tạo tài khoản ngay</a></p>
+          <div class="divider">
+            <span>Hoặc</span>
+          </div>
+          <button class="google-login-btn">
+            <img src="assets/img/google-icon.png" alt="Google Icon">
+            <span>Đăng nhập bằng Google</span>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- ===== MAIN CONTENT ===== -->
     <main id="main-content">
@@ -84,7 +107,7 @@
 
           <a
             id="detailButton"
-            href="event-detail.html?eventId=babymonster"
+            href="pages/event-detail.html?eventId=babymonster"
             class="banner-detail btn-default"
           >
             Xem chi tiết
@@ -305,5 +328,8 @@
         Copyright © 2025 <strong>EvenTory by Z10</strong>. All rights reserved.
       </p>
     </footer>
+
+    <!-- Scripts -->
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
