@@ -1,25 +1,23 @@
 // ===== header =====
-document.addEventListener("DOMContentLoaded", () => {
-  let lastScrollY = window.pageYOffset;
-  const header = document.querySelector(".site-header");
+let lastScrollY = window.pageYOffset;
+const header = document.querySelector(".site-header");
 
-  window.addEventListener("scroll", () => {
-    const currentScrollY = window.pageYOffset;
+window.addEventListener("scroll", () => {
+  const currentScrollY = window.pageYOffset;
 
-    if (currentScrollY <= 0) {
-      header.style.transform = "translateY(0)";
-    } else if (currentScrollY > lastScrollY) {
-      header.style.transform = "translateY(-100%)";
-    } else {
-      header.style.transform = "translateY(0)";
-    }
+  if (currentScrollY <= 0) {
+    header.style.transform = "translateY(0)";
+  } else if (currentScrollY > lastScrollY) {
+    header.style.transform = "translateY(-100%)";
+  } else {
+    header.style.transform = "translateY(0)";
+  }
 
-    lastScrollY = currentScrollY;
-  });
+  lastScrollY = currentScrollY;
 });
 
 // ===== event detail content =====
-document.addEventListener("DOMContentLoaded", async () => {
+(async () => {
   // 1. Lấy eventId từ URL
   const params = new URLSearchParams(location.search);
   const eventId = params.get("eventId");
@@ -101,8 +99,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Hiển thị quảng cáo
   document.querySelector(".event-info-right").style.display = "flex";
 
-  // === KẾT THÚC PHẦN ===
-
   // 9. Tickets table
   const saleTimeEl = document.getElementById("ticket-sale-time");
   saleTimeEl.textContent = `${ev.ticket_sale.start_date} đến ${ev.ticket_sale.end_date}`;
@@ -143,14 +139,86 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // 12. (Tuỳ chọn) Load slider “Dành cho bạn” nếu có data
-});
+  // ===== Gợi ý dành cho bạn =====
+  // 1. Lấy eventId từ URL
+  if (!eventId) {
+    console.error("Không tìm thấy eventId cho section Gợi ý");
+    return;
+  }
+
+  // Lấy các phần tử DOM cho section Gợi ý
+  const suggestionTrack = document.getElementById("suggestionTrack");
+  const nextBtn = document.querySelector(
+    ".event-suggestion-section .carousel-nav.next"
+  );
+  const prevBtn = document.querySelector(
+    ".event-suggestion-section .carousel-nav.prev"
+  );
+  let scrollPosition = 0;
+  const cardWidth = 270; // Width of each card
+  const gap = 16; // Gap between cards
+  const cardsToScroll = 3; // Number of cards to scroll at a time
+  const scrollAmount = (cardWidth + gap) * cardsToScroll;
+
+  // Lọc các sự kiện gợi ý
+  // 1. Lấy các sự kiện cùng thành phố (trừ sự kiện hiện tại)
+  let suggestedEvents = events.filter(
+    (e) => e.city === ev.city && e.id !== eventId
+  );
+
+  // 2. Nếu không đủ 5 sự kiện, lấy thêm ngẫu nhiên từ các sự kiện khác
+  if (suggestedEvents.length < 5) {
+    const otherEvents = events.filter(
+      (e) => e.city !== ev.city && e.id !== eventId
+    );
+    // Xáo trộn mảng otherEvents
+    for (let i = otherEvents.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [otherEvents[i], otherEvents[j]] = [otherEvents[j], otherEvents[i]];
+    }
+    // Thêm đủ để có tối đa 5 sự kiện
+    const additionalEvents = otherEvents.slice(0, 5 - suggestedEvents.length);
+    suggestedEvents = [...suggestedEvents, ...additionalEvents];
+  }
+
+  // 3. Chỉ lấy tối đa 5 sự kiện
+  suggestedEvents = suggestedEvents.slice(0, 5);
+
+  // Render các sự kiện gợi ý
+  suggestedEvents.forEach((event) => {
+    const card = document.createElement("div");
+    card.className = "trend-card-wrapper";
+    card.innerHTML = `
+      <img src="../${event.poster}" alt="${event.title}" />
+      <div class="trend-caption">
+        <div class="trend-title">${event.title}</div>
+        <div class="trend-date">${event.event_info.date}</div>
+      </div>
+    `;
+    card.addEventListener("click", () => {
+      window.location.href = `event-detail.html?eventId=${event.id}`;
+    });
+    suggestionTrack.appendChild(card);
+  });
+
+  // Thêm chức năng carousel
+  const maxScroll = suggestionTrack.scrollWidth - suggestionTrack.clientWidth;
+  nextBtn.addEventListener("click", () => {
+    scrollPosition += scrollAmount;
+    if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+    suggestionTrack.scrollTo({ left: scrollPosition, behavior: "smooth" });
+  });
+
+  prevBtn.addEventListener("click", () => {
+    scrollPosition -= scrollAmount;
+    if (scrollPosition < 0) scrollPosition = 0;
+    suggestionTrack.scrollTo({ left: scrollPosition, behavior: "smooth" });
+  });
+})();
 
 // #buy-ticket-btn
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("buy-ticket-btn");
-  if (!btn) return;
-
+const btn = document.getElementById("buy-ticket-btn");
+if (btn) {
   btn.addEventListener("click", function (e) {
     const ripple = document.createElement("span");
     ripple.classList.add("ripple");
@@ -164,4 +232,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ripple.addEventListener("animationend", () => ripple.remove());
   });
-});
+}

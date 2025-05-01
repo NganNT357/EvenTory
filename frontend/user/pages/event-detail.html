@@ -36,7 +36,7 @@
     />
     <!-- Assets -->
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <script src="../assets/js/event-detail.js"></script>
+    <script defer src="../assets/js/event-detail.js"></script>
     <title>Chi tiết sự kiện</title>
   </head>
   <body>
@@ -133,6 +133,20 @@
       </section>
 
       <!-- Gợi ý dành cho bạn -->
+      <section class="event-suggestion-section">
+        <h2 class="section-title">
+          <span class="emoji">🎉</span> Gợi ý dành cho bạn
+        </h2>
+        <div class="carousel-viewport">
+          <button class="carousel-nav prev">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+          <div class="carousel-track" id="suggestionTrack"></div>
+          <button class="carousel-nav next">
+            <span class="material-symbols-rounded">chevron_right</span>
+          </button>
+        </div>
+      </section>
     </main>
 
     <!-- ===== FOOTER ===== -->

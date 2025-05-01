@@ -440,6 +440,16 @@ footer {
   color: white;
 }
 
+.button-icon {
+  display: inline-flex;
+  font-family: "Material Symbols Rounded";
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.button-text {
+  display: none; /* Ẩn văn bản vì nút nhỏ, chỉ cần icon là đủ */
+}
+
 /* event trend section */
 .event-trend-section {
   background-color: #fff1f1;
@@ -1178,3 +1188,103 @@ footer h4 {
 }
 
 /* Gợi ý dành cho bạn */
+.event-suggestion-section {
+  background-color: #fff1f1;
+  padding: 48px 0;
+}
+
+.event-suggestion-section .section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-primary, #a72a7c);
+  margin-left: 103px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-suggestion-section .carousel-viewport {
+  position: relative;
+  padding: 0 103px;
+}
+
+.event-suggestion-section .carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.event-suggestion-section .carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.event-suggestion-section .trend-card-wrapper {
+  flex: 0 0 270px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-suggestion-section .trend-card-wrapper img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.event-suggestion-section .trend-caption {
+  padding: 12px 8px;
+}
+
+.event-suggestion-section .trend-caption .trend-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-suggestion-section .trend-caption .trend-date {
+  font-size: 12px;
+  color: #2959e2;
+  font-weight: 500;
+}
+
+.event-suggestion-section .carousel-nav {
+  position: absolute;
+  top: 120px; /* Center of card height (approx 240px / 2) */
+  transform: translateY(-50%);
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  font-size: 28px;
+  color: #555;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.event-suggestion-section .carousel-nav.prev {
+  left: 103px;
+}
+
+.event-suggestion-section .carousel-nav.next {
+  right: 103px;
+}

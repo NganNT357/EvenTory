@@ -101,14 +101,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("eventGrid");
   const moreButtonWrapper = document.querySelector(".event-more-btn");
   const moreButton = document.querySelector(".event-more-btn .more-button");
+  let buttonIcon = moreButton.querySelector(".button-icon"); // Ban đầu lấy element icon
+  const buttonText = moreButton.querySelector(".button-text");
+  const eventSection = document.querySelector(".event-upcoming-section"); // Lấy section để cuộn về
   let allEvents = [];
   let displayedEvents = 6; // Initially display 6 events
   const eventsPerLoad = 6; // Number of events to show initially
+  let isExpanded = false; // Trạng thái hiện tại (đã mở rộng hay chưa)
 
-  // Check if the more button exists
-  if (!moreButton || !moreButtonWrapper) {
+  // Check if the more button and its components exist
+  if (!moreButton || !moreButtonWrapper || !buttonIcon || !buttonText || !eventSection) {
     console.error(
-      "Không tìm thấy nút 'Xem thêm'. Vui lòng kiểm tra HTML: .event-more-btn và .more-button."
+      "Không tìm thấy nút 'Xem thêm', các thành phần của nó, hoặc section 'event-upcoming-section'. Vui lòng kiểm tra HTML."
     );
     return;
   }
@@ -125,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Function to render events
       const renderEvents = (eventList) => {
+        container.innerHTML = ""; // Xóa danh sách hiện tại trước khi render lại
         eventList.forEach((event) => {
           const card = document.createElement("div");
           card.className = "event-card";
@@ -159,26 +164,57 @@ document.addEventListener("DOMContentLoaded", () => {
         moreButtonWrapper.style.display = "block";
       }
 
-      // Add click event for "Xem thêm" button
+      // Add click event for "Xem thêm" / "Thu gọn" button
       moreButton.addEventListener("click", () => {
-        console.log("Nút 'Xem thêm' được nhấn, hiển thị các sự kiện còn lại.");
-        // Render the remaining events
-        const remainingEvents = allEvents.slice(displayedEvents);
-        renderEvents(remainingEvents);
-        console.log(`Đã hiển thị thêm ${remainingEvents.length} sự kiện.`);
+        if (!isExpanded) {
+          // Hiển thị tất cả sự kiện (trạng thái "Xem thêm")
+          console.log("Nút 'Xem thêm' được nhấn, hiển thị các sự kiện còn lại.");
+          renderEvents(allEvents);
+          console.log(`Đã hiển thị tất cả ${allEvents.length} sự kiện.`);
 
-        // Update displayed events count
-        displayedEvents = allEvents.length;
+          // Thay thế toàn bộ element icon để buộc render lại
+          const newIconExpand = document.createElement("span");
+          newIconExpand.className = "material-symbols-rounded button-icon";
+          newIconExpand.textContent = "expand_less";
+          buttonIcon.replaceWith(newIconExpand);
+          buttonIcon = newIconExpand; // Cập nhật tham chiếu đến element mới
 
-        // Hide the "Xem thêm" button wrapper since all events are now displayed
-        moreButtonWrapper.style.display = "none";
-        console.log("Đã hiển thị hết sự kiện, ẩn nút 'Xem thêm'.");
+          buttonText.textContent = "Thu gọn";
+          moreButton.classList.add("collapsed");
+          console.log("Trạng thái: Đã mở rộng (isExpanded = true)");
+          console.log("Icon hiện tại:", buttonIcon.textContent);
+
+          isExpanded = true;
+        } else {
+          // Thu gọn về trạng thái ban đầu (trạng thái "Thu gọn")
+          console.log("Nút 'Thu gọn' được nhấn, quay lại trạng thái ban đầu.");
+          const initialEvents = allEvents.slice(0, displayedEvents);
+          renderEvents(initialEvents);
+          console.log(`Đã thu gọn về ${initialEvents.length} sự kiện.`);
+
+          // Thay thế toàn bộ element icon để buộc render lại
+          const newIconCollapse = document.createElement("span");
+          newIconCollapse.className = "material-symbols-rounded button-icon";
+          newIconCollapse.textContent = "expand_more";
+          buttonIcon.replaceWith(newIconCollapse);
+          buttonIcon = newIconCollapse; // Cập nhật tham chiếu đến element mới
+
+          buttonText.textContent = "Xem thêm";
+          moreButton.classList.remove("collapsed");
+          console.log("Trạng thái: Đã thu gọn (isExpanded = false)");
+          console.log("Icon hiện tại:", buttonIcon.textContent);
+
+          // Cuộn về đầu section "Các sự kiện sắp diễn ra"
+          eventSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          console.log("Đã cuộn về đầu section 'Các sự kiện sắp diễn ra'.");
+
+          isExpanded = false;
+        }
       });
     })
     .catch((error) => {
       console.error("Lỗi tải dữ liệu sự kiện sắp diễn ra:", error);
       console.log("Dữ liệu không tải được, kiểm tra file event-upcoming.txt.");
-      // Keep the button visible to help debug
       moreButtonWrapper.style.display = "block";
     });
 });
@@ -291,3 +327,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Lỗi tải dữ liệu sự kiện đặc biệt:", error);
   }
 });
+
+
