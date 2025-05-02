@@ -179,6 +179,12 @@ footer {
 .nav-links a:hover::after {
   transform: scaleX(1);
 }
+.nav-links a.active {
+  color: white;
+}
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
 
 .nav-links .btn-login {
   padding: 10px 20px;
@@ -502,7 +508,7 @@ footer {
 
 .event-card {
   width: 335px;
-  height: 280px;
+  height: auto;
   background-color: white;
   border-radius: 18px;
   overflow: hidden;
@@ -530,7 +536,7 @@ footer {
 }
 
 .event-date {
-  width: 50px;
+  width: 60px;
   text-align: center;
   margin-right: 12px;
   font-weight: bold;
@@ -641,6 +647,7 @@ footer {
 
 .trend-card-wrapper {
   flex: 0 0 270px;
+  height: fit-content;
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
@@ -648,11 +655,11 @@ footer {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm transition cho hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .trend-card-wrapper:hover {
-  transform: translateY(-6px) scale(1.02); /* Hiệu ứng hover giống event-card */
+  transform: translateY(-6px) scale(1.02);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
@@ -726,11 +733,11 @@ footer {
 }
 
 .event-special-section .trend-caption {
-  padding: 12px 8px;
+  padding: 10px 10px;
 }
 
 .event-special-section .trend-caption .trend-title {
-  margin-top: 0; /* Remove margin-top since rank is removed */
+  margin-top: 0;
 }
 
 /* infinite logo section */
@@ -750,7 +757,7 @@ footer {
 
 .infinite-logo-section p {
   font-size: 16px;
-  color: black;
+  color: #000;
   margin-bottom: 40px;
 }
 
@@ -773,65 +780,96 @@ footer {
 
 .itemLeft,
 .itemRight {
-  width: 200px;
-  height: 70px;
+  width: 180px;
+  height: 80px;
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   animation-timing-function: linear;
   animation-duration: 30s;
   animation-iteration-count: infinite;
 }
 
-.itemLeft img,
-.itemRight img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  filter: none;
+.itemLeft {
+  left: calc((200px + 20px) * 8);
+  animation-name: scrollLeft;
+}
+.itemRight {
+  right: calc((200px + 20px) * 8);
+  animation-name: scrollRight;
 }
 
+.itemLeft:nth-child(1) {
+  animation-delay: calc(30s / 8 * -7);
+}
+.itemLeft:nth-child(2) {
+  animation-delay: calc(30s / 8 * -6);
+}
+.itemLeft:nth-child(3) {
+  animation-delay: calc(30s / 8 * -5);
+}
+.itemLeft:nth-child(4) {
+  animation-delay: calc(30s / 8 * -4);
+}
+.itemLeft:nth-child(5) {
+  animation-delay: calc(30s / 8 * -3);
+}
+.itemLeft:nth-child(6) {
+  animation-delay: calc(30s / 8 * -2);
+}
+.itemLeft:nth-child(7) {
+  animation-delay: calc(30s / 8 * -1);
+}
+.itemLeft:nth-child(8) {
+  animation-delay: 0s;
+}
+
+.itemRight:nth-child(1) {
+  animation-delay: calc(30s / 8 * -7);
+}
+.itemRight:nth-child(2) {
+  animation-delay: calc(30s / 8 * -6);
+}
+.itemRight:nth-child(3) {
+  animation-delay: calc(30s / 8 * -5);
+}
+.itemRight:nth-child(4) {
+  animation-delay: calc(30s / 8 * -4);
+}
+.itemRight:nth-child(5) {
+  animation-delay: calc(30s / 8 * -3);
+}
+.itemRight:nth-child(6) {
+  animation-delay: calc(30s / 8 * -2);
+}
+.itemRight:nth-child(7) {
+  animation-delay: calc(30s / 8 * -1);
+}
+.itemRight:nth-child(8) {
+  animation-delay: 0s;
+}
+
+/* Keyframes cuộn */
 @keyframes scrollLeft {
   to {
-    left: -200px;
+    left: calc(-200px - 20px);
   }
 }
 @keyframes scrollRight {
   to {
-    right: -200px;
+    right: calc(-200px - 20px);
   }
 }
 
-.itemLeft {
-  left: max(calc(200px * 10), 100%);
-  animation-name: scrollLeft;
+/* Điều chỉnh kích thước logo bên trong */
+.itemLeft img,
+.itemRight img {
+  max-width: 180px;
+  max-height: 50px;
+  object-fit: contain;
 }
-.itemRight {
-  right: max(calc(200px * 10), calc(100% + 200px));
-  animation-name: scrollRight;
-}
-
-.itemLeft:nth-child(1) { animation-delay: calc(30s / 10 * (10 - 1) * -1); }
-.itemLeft:nth-child(2) { animation-delay: calc(30s / 10 * (10 - 2) * -1); }
-.itemLeft:nth-child(3) { animation-delay: calc(30s / 10 * (10 - 3) * -1); }
-.itemLeft:nth-child(4) { animation-delay: calc(30s / 10 * (10 - 4) * -1); }
-.itemLeft:nth-child(5) { animation-delay: calc(30s / 10 * (10 - 5) * -1); }
-.itemLeft:nth-child(6) { animation-delay: calc(30s / 10 * (10 - 6) * -1); }
-.itemLeft:nth-child(7) { animation-delay: calc(30s / 10 * (10 - 7) * -1); }
-.itemLeft:nth-child(8) { animation-delay: calc(30s / 10 * (10 - 8) * -1); }
-.itemLeft:nth-child(9) { animation-delay: calc(30s / 10 * (10 - 9) * -1); }
-.itemLeft:nth-child(10) { animation-delay: calc(30s / 10 * (10 - 10) * -1); }
-
-.itemRight:nth-child(1) { animation-delay: calc(30s / 10 * (10 - 1) * -1); }
-.itemRight:nth-child(2) { animation-delay: calc(30s / 10 * (10 - 2) * -1); }
-.itemRight:nth-child(3) { animation-delay: calc(30s / 10 * (10 - 3) * -1); }
-.itemRight:nth-child(4) { animation-delay: calc(30s / 10 * (10 - 4) * -1); }
-.itemRight:nth-child(5) { animation-delay: calc(30s / 10 * (10 - 5) * -1); }
-.itemRight:nth-child(6) { animation-delay: calc(30s / 10 * (10 - 6) * -1); }
-.itemRight:nth-child(7) { animation-delay: calc(30s / 10 * (10 - 7) * -1); }
-.itemRight:nth-child(8) { animation-delay: calc(30s / 10 * (10 - 8) * -1); }
-.itemRight:nth-child(9) { animation-delay: calc(30s / 10 * (10 - 9) * -1); }
-.itemRight:nth-child(10) { animation-delay: calc(30s / 10 * (10 - 10) * -1); }
 
 /* ===== FOOTER ===== */
 footer h4 {
@@ -1067,7 +1105,6 @@ footer h4 {
 
 .event-content-wrapper {
   display: flex;
-  gap: 24px;
   width: 100%;
 }
 
@@ -1075,11 +1112,13 @@ footer h4 {
 .event-info-left {
   position: relative;
   overflow: visible;
+  max-width: 700px;
   flex: 2;
   background: #fff;
   border: 2px solid #333;
   border-radius: 24px;
-  padding: 30px 24px 24px;
+  padding: 30px 45px;
+  margin-left: 100px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 .event-info-left .info-section {
@@ -1137,7 +1176,7 @@ footer h4 {
 
 .event-info-right img {
   display: block;
-  width: 290px;
+  width: 280px;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -1216,56 +1255,6 @@ footer h4 {
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* #buy-ticket-btn {
-  position: absolute;
-  top: 32px;
-  right: 24px;
-  --start: #ff3366;
-  --mid: #ff66aa;
-  --end: #ff3366;
-
-  background: linear-gradient(90deg, var(--start), var(--mid), var(--end));
-  background-size: 200% 100%;
-  background-position: 0% 0%;
-
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
-  overflow: hidden;
-  transition: background-position 0.5s ease,
-    transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
-    box-shadow 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.25s ease;
-}
-
-#buy-ticket-btn:hover {
-  background-position: 100% 0%;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-#buy-ticket-btn:active {
-  transform: translateY(-1px) scale(0.98);
-  filter: brightness(1.2);
-}
-
-#buy-ticket-btn .ripple {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 600ms linear;
-  pointer-events: none;
-}
-@keyframes ripple {
-  to {
-    transform: scale(6);
-    opacity: 0;
-  }
-} */
 #buy-ticket-btn {
   --start: #ff3366;
   --mid: #ff66aa;
@@ -1346,7 +1335,7 @@ footer h4 {
   }
 }
 
-/* Gợi ý dành cho bạn */
+/* event suggetion section */
 .event-suggestion-section {
   background-color: #fff1f1;
   padding: 48px 0;

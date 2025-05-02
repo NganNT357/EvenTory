@@ -27,7 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const continueBtn = document.getElementById("continueBtn");
   let redirectAfterLogin = "index.html"; // Mặc định chuyển hướng về trang chính
 
-  if (loginPopup && closePopup && continueBtn && window.location.pathname.includes("index.html")) {
+  if (
+    loginPopup &&
+    closePopup &&
+    continueBtn &&
+    window.location.pathname.includes("index.html")
+  ) {
     // Mở popup khi nhấn "Login"
     if (loginBtn) {
       loginBtn.addEventListener("click", (e) => {
@@ -163,7 +168,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let isExpanded = false;
   const currentDate = new Date("2025-05-01"); // Ngày hiện tại
 
-  if (!moreButton || !moreButtonWrapper || !buttonIcon || !buttonText || !eventSection) {
+  if (
+    !moreButton ||
+    !moreButtonWrapper ||
+    !buttonIcon ||
+    !buttonText ||
+    !eventSection
+  ) {
     console.error(
       "Không tìm thấy nút 'Xem thêm', các thành phần của nó, hoặc section 'event-upcoming-section'."
     );
@@ -190,13 +201,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return dateA - dateB;
       });
 
-      console.log(`Đã tải ${allEvents.length} sự kiện từ event-detail-data.txt (Sự kiện sắp tới)`);
+      console.log(
+        `Đã tải ${allEvents.length} sự kiện từ event-detail-data.txt (Sự kiện sắp tới)`
+      );
 
       const renderEvents = (eventList) => {
         container.innerHTML = "";
         eventList.forEach((event) => {
           const eventDate = new Date(event.event_info.date);
-          const month = eventDate.toLocaleString("default", { month: "short" }).toUpperCase();
+          const month = eventDate
+            .toLocaleString("default", { month: "short" })
+            .toUpperCase();
           const day = eventDate.getDate();
 
           const card = document.createElement("div");
@@ -215,7 +230,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           `;
           card.addEventListener("click", () => {
-            window.open(`pages/event-detail.html?eventId=${event.id}`, "_blank");
+            window.open(
+              `pages/event-detail.html?eventId=${event.id}`,
+              "_blank"
+            );
           });
           container.appendChild(card);
         });
@@ -353,15 +371,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Lọc các sự kiện đặc biệt: Có vé VIP hoặc giá vé cao nhất
     events = events.filter((event) => {
-      return event.tickets.some((ticket) => 
-        ticket.type.toLowerCase().includes("vip") || ticket.price >= 5000000
+      return event.tickets.some(
+        (ticket) =>
+          ticket.type.toLowerCase().includes("vip") || ticket.price >= 5000000
       );
     });
 
     // Sắp xếp theo giá vé cao nhất (giảm dần)
     events.sort((a, b) => {
-      const maxPriceA = Math.max(...a.tickets.map(t => t.price));
-      const maxPriceB = Math.max(...b.tickets.map(t => t.price));
+      const maxPriceA = Math.max(...a.tickets.map((t) => t.price));
+      const maxPriceB = Math.max(...b.tickets.map((t) => t.price));
       return maxPriceB - maxPriceA;
     });
 

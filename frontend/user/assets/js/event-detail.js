@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== Gợi ý dành cho bạn =====
+  // ===== event suggetion section =====
   // 1. Lấy eventId từ URL
   if (!eventId) {
     console.error("Không tìm thấy eventId cho section Gợi ý");
@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-// #buy-ticket-btn
+// ===== #buy-ticket-btn =====
 const btn = document.getElementById("buy-ticket-btn");
 if (btn) {
   btn.addEventListener("click", function (e) {
