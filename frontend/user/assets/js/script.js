@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let displayedEvents = 6;
   const eventsPerLoad = 6;
   let isExpanded = false;
-  const currentDate = new Date("2025-05-01"); // Ngày hiện tại
+  const currentDate = new Date("2025-05-03"); // Ngày hiện tại
 
   if (
     !moreButton ||
@@ -221,6 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="event-info">
               <div class="event-date">
                 <span class="month">${month}</span>
+                <br/>
                 <span class="day">${day}</span>
               </div>
               <div class="event-text">
@@ -289,14 +290,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===== event trend section =====
 document.addEventListener("DOMContentLoaded", async () => {
   const track = document.getElementById("carouselTrack");
-  const nextBtn = document.querySelector(
-    ".event-trend-section .carousel-nav.next"
-  );
-  const prevBtn = document.querySelector(
-    ".event-trend-section .carousel-nav.prev"
-  );
+  const nextBtn = document.querySelector(".event-trend-section .carousel-nav.next");
+  const prevBtn = document.querySelector(".event-trend-section .carousel-nav.prev");
   let scrollPosition = 0;
-  const cardWidth = 270;
+  const cardWidth = 230;
   const gap = 16;
   const cardsToScroll = 3;
   const scrollAmount = (cardWidth + gap) * cardsToScroll;
@@ -306,31 +303,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch("assets/data/event-detail-data.txt");
     let trendEvents = await response.json();
 
-    // Sắp xếp theo ngày gần nhất
     trendEvents.sort((a, b) => {
       const dateA = new Date(a.event_info.date);
       const dateB = new Date(b.event_info.date);
       return Math.abs(dateA - currentDate) - Math.abs(dateB - currentDate);
     });
 
-    // Giới hạn số lượng sự kiện (ví dụ: 10 sự kiện xu hướng)
     trendEvents = trendEvents.slice(0, 10);
 
     trendEvents.forEach((event, i) => {
       const card = document.createElement("div");
       card.className = "trend-card-wrapper";
       card.innerHTML = `
-        <img src="${event.poster}" alt="${event.title}" />
-        <div class="trend-caption">
-          <div class="trend-rank">${i + 1}</div>
-          <div class="trend-title">${event.title}</div>
-          <div class="trend-date">${event.event_info.date}</div>
+        <div class="trend-card-image-wrapper">
+          <div class="trend-card-image">
+            <img src="${event.poster}" alt="${event.title}" />
+          </div>
+        </div>
+        <div class="trend-card-footer">
+          <div class="trend-card-index">${i + 1}</div>
+          <div class="trend-card-meta">
+            <span>${event.title}</span>
+            <span>${event.event_info.date}</span>
+          </div>
         </div>
       `;
       card.addEventListener("click", () => {
         window.open(`pages/event-detail.html?eventId=${event.id}`, "_blank");
       });
       track.appendChild(card);
+
+      // Thêm class .opposite-frame cho các rank 2, 4, 6, 8, 10 sau khi append
+      if ((i + 1) % 2 === 0) {
+        card.querySelector(".trend-card-image").classList.add("opposite-frame");
+      }
     });
 
     const maxScroll = track.scrollWidth - track.clientWidth;
@@ -369,7 +375,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch("assets/data/event-detail-data.txt");
     let events = await response.json();
 
-    // Lọc các sự kiện đặc biệt: Có vé VIP hoặc giá vé cao nhất
     events = events.filter((event) => {
       return event.tickets.some(
         (ticket) =>
@@ -377,21 +382,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
     });
 
-    // Sắp xếp theo giá vé cao nhất (giảm dần)
     events.sort((a, b) => {
       const maxPriceA = Math.max(...a.tickets.map((t) => t.price));
       const maxPriceB = Math.max(...b.tickets.map((t) => t.price));
       return maxPriceB - maxPriceA;
     });
 
-    // Giới hạn số lượng sự kiện (ví dụ: 5 sự kiện đặc biệt)
     events = events.slice(0, 5);
 
-    events.forEach((event, i) => {
+    events.forEach((event) => {
       const card = document.createElement("div");
       card.className = "trend-card-wrapper";
       card.innerHTML = `
-        <img src="${event.poster}" alt="${event.title}" />
+        <img src="${event.poster}" alt="${event.title}" class="main-banner" />
+        <img src="${event.poster}" alt="${event.title}" class="sub-poster" />
         <div class="trend-caption">
           <div class="trend-title">${event.title}</div>
           <div class="trend-date">${event.event_info.date}</div>
@@ -419,3 +423,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Lỗi tải dữ liệu sự kiện đặc biệt:", error);
   }
 });
+
