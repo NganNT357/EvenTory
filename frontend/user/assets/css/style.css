@@ -951,6 +951,81 @@ footer {
   right: 103px;
 }
 
+/* Advertisement section */
+.ad-section {
+  padding: 32px 0;
+  background-color: #fff1f1;
+  text-align: center;
+}
+
+.ad-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Viền gradient động */
+.ad-border-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: 16px;
+  padding: 8px; /* độ dày viền */
+  background: linear-gradient(
+    45deg,
+    #b3001b,
+    #ffd700,
+    #c21807,
+    #ff9900,
+    #ffd700
+  );
+  background-size: 300% 300%;
+  animation: gradientAnimation 6s ease infinite;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4); /* thêm ánh sáng nhẹ */
+}
+
+/* Lớp chứa ảnh */
+.ad-image {
+  border-radius: 16px; /* Khớp với wrapper */
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Ảnh */
+.ad-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0; /* Không cần bo lại */
+}
+
+/* Animation cho gradient border */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ad-image {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ad-image {
+    max-width: 100%;
+  }
+}
+
 /* event special section */
 .event-special-section {
   background-color: #fff1f1;
@@ -1424,365 +1499,3 @@ footer h4 {
   color: white;
 }
 
-/* =============== EVENT DETAIL ===============*/
-/* event banner */
-.event-banner {
-  position: relative;
-  margin: 16px auto;
-  height: 500px;
-  overflow: hidden;
-  background-color: transparent;
-}
-.event-banner img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-
-/* event detail content */
-.event-content {
-  padding: 48px 0;
-  margin: 0 50px;
-}
-
-.event-content-wrapper {
-  display: flex;
-  width: 100%;
-}
-
-/* LEFT COLUMN: info */
-.event-info-left {
-  position: relative;
-  overflow: visible;
-  max-width: 700px;
-  flex: 2;
-  background: #fff;
-  border: 2px solid #333;
-  border-radius: 24px;
-  padding: 30px 45px;
-  margin-left: 100px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-.event-info-left .info-section {
-  margin-top: 20px;
-}
-.event-info-left h3 {
-  font-size: 18px;
-  font-weight: 600;
-}
-.event-info-left p {
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.info-title-circle {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: inline-block;
-  padding: 0 20px;
-  height: 40px;
-  width: auto;
-  line-height: 35px;
-  background: white;
-  border: 2px solid var(--color-primary);
-  border-radius: 20px;
-  white-space: nowrap;
-  font-weight: 600;
-  color: var(--color-primary);
-  font-size: 18px;
-}
-.info-title-circle span {
-  font-size: 18px;
-}
-
-#promotion-cond {
-  color: var(--color-text-light);
-}
-#organizer-logo {
-  display: block;
-  width: 120px;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 8px;
-}
-
-/* RIGHT COLUMN: quảng cáo */
-.event-info-right {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-}
-
-.event-info-right img {
-  display: block;
-  width: 280px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* Event Ticket Section */
-.event-ticket {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto 48px;
-  padding: 32px 24px 0 24px;
-  background: #27272a;
-  color: #fff;
-  border-radius: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.event-ticket h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-}
-.event-ticket p {
-  margin-bottom: 0;
-}
-
-.event-ticket .ticket-sale-time {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #bbb;
-}
-
-.ticket-table {
-  width: calc(100% + 48px);
-  border-collapse: collapse;
-  border-radius: 0 0 24px 24px;
-  margin: 15px -24px 0 -24px;
-  table-layout: fixed;
-  overflow: hidden;
-}
-.ticket-table tr:nth-child(odd) {
-  background-color: #2e2f32;
-}
-.ticket-table tr:nth-child(even) {
-  background-color: #37373c;
-}
-
-.ticket-table td {
-  padding: 12px 24px;
-  color: #fff;
-  font-weight: 500;
-  vertical-align: top;
-}
-.ticket-table td:last-child {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  white-space: nowrap;
-}
-
-/* xử lí giá vé */
-.ticket-table .sold-out {
-  display: block;
-  margin-top: 4px;
-  background-color: #f0ad4e;
-  color: #212529;
-  font-size: 12px;
-  padding: 2px 8px;
-  border-radius: 20px;
-  font-weight: 600;
-  float: right;
-}
-.ticket-table tr.ticket-available .ticket-price {
-  color: var(--color-primary-light-2);
-}
-.ticket-table tr.ticket-soldout .ticket-price {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-#buy-ticket-btn {
-  --start: #ff3366;
-  --mid: #ff66aa;
-  --end: #ff3366;
-
-  position: absolute;
-  top: 32px;
-  right: 24px;
-  padding: 12px 24px;
-  color: #fff;
-  background: #27272a;
-  border: 4px solid transparent;
-  border-radius: 999px;
-  overflow: hidden;
-  z-index: 0;
-  box-shadow: 0 0 10px var(--mid);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-#buy-ticket-btn::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from 0deg,
-    var(--start),
-    var(--mid),
-    var(--end),
-    var(--start)
-  );
-  animation: rotate-border 4s linear infinite;
-  z-index: -2;
-}
-
-#buy-ticket-btn::after {
-  content: "";
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  right: 1px;
-  bottom: 1px;
-  background: #27272a;
-  border-radius: inherit;
-  z-index: -1;
-}
-@keyframes rotate-border {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-#buy-ticket-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(90deg, var(--start), var(--mid), var(--end));
-}
-#buy-ticket-btn:hover::before {
-  animation-play-state: paused;
-  opacity: 0;
-}
-
-#buy-ticket-btn .ripple {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 600ms linear;
-  pointer-events: none;
-}
-@keyframes ripple {
-  to {
-    transform: scale(6);
-    opacity: 0;
-  }
-}
-
-/* event suggetion section */
-.event-suggestion-section {
-  background-color: #fff1f1;
-  padding: 48px 0;
-}
-
-.event-suggestion-section .section-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--color-primary, #a72a7c);
-  margin-left: 103px;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.event-suggestion-section .carousel-viewport {
-  position: relative;
-  padding: 0 103px;
-}
-
-.event-suggestion-section .carousel-track {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.event-suggestion-section .carousel-track::-webkit-scrollbar {
-  display: none;
-}
-
-.event-suggestion-section .trend-card-wrapper {
-  flex: 0 0 270px;
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm transition cho hover */
-}
-
-.event-suggestion-section .trend-card-wrapper:hover {
-  transform: translateY(-6px) scale(1.02); /* Hiệu ứng hover giống event-card */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.event-suggestion-section .trend-card-wrapper img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.event-suggestion-section .trend-caption {
-  padding: 12px 8px;
-}
-
-.event-suggestion-section .trend-caption .trend-title {
-  font-weight: 600;
-  font-size: 14px;
-  color: #222;
-  line-height: 1.3;
-  margin-bottom: 4px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.event-suggestion-section .trend-caption .trend-date {
-  font-size: 12px;
-  color: #2959e2;
-  font-weight: 500;
-}
-
-.event-suggestion-section .carousel-nav {
-  position: absolute;
-  top: 120px; /* Center of card height (approx 240px / 2) */
-  transform: translateY(-50%);
-  background: white;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  font-size: 28px;
-  color: #555;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.event-suggestion-section .carousel-nav.prev {
-  left: 103px;
-}
-
-.event-suggestion-section .carousel-nav.next {
-  right: 103px;
-}
