@@ -287,6 +287,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// ===== promotional section =====
+const promoBtn = document.querySelector('.promo-button');
+
+promoBtn.addEventListener('mouseenter', () => {
+  // Hiệu ứng confetti trung tâm
+  confetti({
+    particleCount: 80,
+    spread: 90,
+    origin: { y: 0.6 },
+    colors: ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd'],
+    scalar: 1.2
+  });
+
+  // Hiệu ứng nổ pháo bên trái
+  confetti({
+    particleCount: 50,
+    angle: 60, // Điều chỉnh góc để nổ lệch sang trái
+    spread: 60,
+    origin: { x: 0.2, y: 0.6 }, // Vị trí lệch sang trái
+    colors: ['#ff0a54', '#ff477e', '#ffd700', '#ffeb3b'],
+    shapes: ['circle', 'star'],
+    scalar: 1.5,
+    drift: 0.1
+  });
+
+  // Hiệu ứng nổ pháo bên phải
+  confetti({
+    particleCount: 50,
+    angle: 120, // Điều chỉnh góc để nổ lệch sang phải
+    spread: 60,
+    origin: { x: 0.8, y: 0.6 }, // Vị trí lệch sang phải
+    colors: ['#ff0a54', '#ff477e', '#ffd700', '#ffeb3b'],
+    shapes: ['circle', 'star'],
+    scalar: 1.5,
+    drift: 0.1
+  });
+});
+
 // ===== event trend section =====
 document.addEventListener("DOMContentLoaded", async () => {
   const track = document.getElementById("carouselTrack");
@@ -423,4 +461,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Lỗi tải dữ liệu sự kiện đặc biệt:", error);
   }
 });
+
+
+
+
+
+
 

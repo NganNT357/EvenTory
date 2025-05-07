@@ -244,6 +244,20 @@ footer {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
+.login-popup-content h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ec0808, #b229b4, #481b91); 
+  -webkit-background-clip: text; 
+  background-clip: text;
+  color: transparent; 
+  display: block;
+}
+
 .close-popup {
   position: absolute;
   top: 16px;
@@ -253,12 +267,10 @@ footer {
   color: var(--color-text-dark);
 }
 
-.login-popup-content h2 {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--color-primary);
-  margin-bottom: 24px;
-  text-align: center;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
 .login-form label {
@@ -266,6 +278,8 @@ footer {
   font-size: 14px;
   color: var(--color-text-dark);
   margin-bottom: 8px;
+  width: 100%;
+  text-align: left;
 }
 
 .login-form input {
@@ -283,13 +297,14 @@ footer {
 }
 
 .continue-btn {
-  width: 100%;
-  padding: 12px;
+  padding: 10px 20px;
   background: var(--gradient-primary);
   color: white;
   font-size: 16px;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: 32px;
+  border: none;
+  cursor: pointer;
   margin-bottom: 16px;
   transition: background 0.3s ease;
 }
@@ -325,6 +340,7 @@ footer {
   justify-content: center;
   margin: 16px 0;
   position: relative;
+  width: 100%;
 }
 
 .divider::before,
@@ -352,25 +368,28 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 12px;
-  background-color: white;
+  width: 49px;
+  height: 49px;
+  background-color: rgba(255, 255, 255, 0);
   border: 1px solid var(--color-border-soft);
-  border-radius: 8px;
+  border-radius: 50%;
   font-size: 14px;
   color: var(--color-text-dark);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  padding: 0;
+  margin: 0 auto;
 }
 
 .google-login-btn img {
-  width: 20px;
-  height: 20px;
-}
-
-.google-login-btn:hover {
-  background-color: var(--color-hover-gray);
+  width: 50px;
+  height: 50px;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+  object-fit: contain;
+  vertical-align: middle !important;
+  float: none !important;
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -607,6 +626,105 @@ footer {
 
 .button-text {
   display: none; /* Ẩn văn bản vì nút nhỏ, chỉ cần icon là đủ */
+}
+
+/* Promo Section */
+.promo-section {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 200px;
+  padding: 0;
+  background-color: #FFD9DA; 
+  text-align: center;
+}
+
+.promo-wrapper {
+  height: 160px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.promo-image {
+  margin-right: 100px;
+}
+
+.promo-image img {
+  width: 440px;
+  height: 240px;
+}
+
+.promo-content {
+  margin-top: 50px;
+  max-width: 50%;
+  text-align: center;
+  flex-direction: column;
+}
+
+.promo-content p {
+  font-family: 'Playpen Sans', cursive;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.promo-button {
+  position: relative;
+  display: inline-block;
+  padding: 8px 15px;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 32px;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.promo-button:hover {
+  background: linear-gradient(135deg, #f13781, #a72a7c);
+}
+
+.promo-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.53) 100%, transparent 100%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.promo-button:hover::before {
+  animation: rippleGlow 0.6s ease-out;
+}
+
+@keyframes rippleGlow {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.7;
+  }
+  100% {
+    width: 200%;
+    height: 500%;
+    opacity: 0;
+  }
 }
 
 /* event trend section */
