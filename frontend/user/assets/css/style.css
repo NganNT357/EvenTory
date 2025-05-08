@@ -625,7 +625,7 @@ footer {
 }
 
 .button-text {
-  display: none; /* Ẩn văn bản vì nút nhỏ, chỉ cần icon là đủ */
+  display: none; 
 }
 
 /* Promo Section */
@@ -1087,7 +1087,7 @@ footer {
   position: relative;
   display: inline-block;
   border-radius: 16px;
-  padding: 8px; /* độ dày viền */
+  padding: 5px; /* độ dày viền */
   background: linear-gradient(
     45deg,
     #b3001b,
