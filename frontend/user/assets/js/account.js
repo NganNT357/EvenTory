@@ -50,3 +50,55 @@ document.querySelectorAll(".btn-save").forEach((btn) => {
     setTimeout(() => ripple.remove(), 600);
   });
 });
+
+// ===== ACOUNT-TICKET =====
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("../assets/data/event-detail-data.txt")
+    .then((res) =>
+      res.ok ? res.json() : Promise.reject("Không load được data")
+    )
+    .then((events) => {
+      const grid = document.querySelector(".tickets-grid");
+      events.forEach((ev) => {
+        const card = document.createElement("div");
+        const raw = ev.poster_sub || ev.poster;
+        const imgPath = "../" + raw;
+        card.className = "ticket-card";
+        card.innerHTML = `
+          <div class="card-image">
+            <img src="${imgPath}" alt="${ev.title || ""}" />
+          </div>
+          <div class="card-details">
+            <h3>${ev.title || ""}</h3>
+            <ul class="ticket-info">
+              <li>
+                <span class="material-symbols-rounded">event</span>
+                ${ev.event_info?.date || ""}${
+          ev.event_info?.time ? ", " + ev.event_info.time : ""
+        }
+              </li>
+              <li>
+                <span class="material-symbols-rounded">location_on</span>
+                ${ev.event_info?.location || ""}
+              </li>
+              <li>
+                <span class="material-symbols-rounded">qr_code</span>
+                ${ev["ticket-id"] || ""}
+              </li>
+              <li>
+                <span class="material-symbols-rounded">confirmation_number</span>
+                ${ev.type || ""}
+              </li>
+              <li>
+                <span class="material-symbols-rounded">paid</span>
+                ${ev.price ? ev.price + " VNĐ" : ""}
+              </li>
+            </ul>
+            <button class="btn-details">Xem chi tiết</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    })
+    .catch((err) => console.error(err));
+});
