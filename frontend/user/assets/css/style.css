@@ -224,10 +224,7 @@ footer {
 .login-popup {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
   justify-content: center;
@@ -237,78 +234,108 @@ footer {
 .login-popup-content {
   background-color: var(--color-bg-body);
   border-radius: 16px;
-  padding: 24px;
   width: 400px;
   max-width: 90%;
-  position: relative;
+  /* position: relative; */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
-.login-popup-content h2 {
+.login-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--gradient-primary);
+  overflow: visible;
+}
+
+.login-header h2 {
+  margin: 0;
+  margin-left: 10px;
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 24px;
-  text-align: center;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #ec0808, #b229b4, #481b91); 
-  -webkit-background-clip: text; 
-  background-clip: text;
-  color: transparent; 
-  display: block;
+  color: white;
+  -webkit-background-clip: unset;
+  background-clip: unset;
 }
 
-.close-popup {
+.login-header .header-mascot {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  right: 60px;
+  bottom: -32px;
+  width: 90px;
+  height: auto;
+  pointer-events: none;
+}
+
+.login-header .close-popup {
+  position: absolute;
+  right: 20px;
+  color: white;
   font-size: 24px;
   cursor: pointer;
-  color: var(--color-text-dark);
+}
+
+.login-body {
+  background-color: var(--color-bg-body);
+  padding: 0 24px;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
-.login-form label {
-  display: block;
+.inputGroup {
+  margin: 24px 0 0 0;
+  position: relative;
+  width: 100%;
+}
+
+.inputGroup input {
   font-size: 14px;
-  color: var(--color-text-dark);
-  margin-bottom: 8px;
-  width: 100%;
-  text-align: left;
-}
-
-.login-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 16px;
-  border: 1px solid var(--color-border-soft);
+  padding: 12px 16px;
+  border: 2px solid rgb(200, 200, 200);
+  background-color: transparent;
   border-radius: 8px;
-  font-size: 14px;
-  outline: none;
+  width: 100%;
 }
 
-.login-form input:focus {
-  border-color: var(--color-primary);
+.inputGroup label {
+  font-size: 14px;
+  position: absolute;
+  left: 0;
+  padding: 12px 0 12px 0;
+  margin-left: 16px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  color: rgb(100, 100, 100);
+  background-color: transparent;
+}
+.inputGroup :is(input:focus, input:valid) ~ label {
+  transform: translateY(-50%) scale(0.9);
+  margin: 0;
+  margin-left: 8px;
+  padding: 8px;
+  background-color: var(--color-bg-body);
 }
 
 .continue-btn {
+  margin-top: 24px;
   padding: 10px 20px;
   background: var(--gradient-primary);
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  border-radius: 32px;
+  border-radius: 16px;
   border: none;
   cursor: pointer;
   margin-bottom: 16px;
   transition: background 0.3s ease;
 }
-
 .continue-btn:hover {
   background: linear-gradient(135deg, #f13781, #a72a7c, #5b21b6);
 }
@@ -318,17 +345,15 @@ footer {
   text-align: center;
   font-size: 14px;
   color: var(--color-primary);
-  margin-bottom: 16px;
-  text-decoration: none;
+  margin-bottom: 10px;
 }
 
 .signup-link {
   text-align: center;
   font-size: 14px;
   color: var(--color-text-light);
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
-
 .signup-link a {
   color: var(--color-primary);
   text-decoration: none;
@@ -342,7 +367,6 @@ footer {
   position: relative;
   width: 100%;
 }
-
 .divider::before,
 .divider::after {
   content: "";
@@ -350,26 +374,30 @@ footer {
   height: 1px;
   background-color: var(--color-border-soft);
 }
-
 .divider::before {
   margin-right: 12px;
 }
-
 .divider::after {
   margin-left: 12px;
 }
-
 .divider span {
   font-size: 14px;
   color: var(--color-text-light);
 }
 
-.google-login-btn {
+.social-login-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.social-login-wrapper .google-login-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 49px;
-  height: 49px;
+  width: 44px;
+  height: 44px;
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid var(--color-border-soft);
   border-radius: 50%;
@@ -380,15 +408,13 @@ footer {
   padding: 0;
   margin: 0 auto;
 }
-
 .google-login-btn img {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   margin: 0 !important;
   padding: 0 !important;
   display: block;
   object-fit: contain;
-  vertical-align: middle !important;
   float: none !important;
 }
 
@@ -625,7 +651,7 @@ footer {
 }
 
 .button-text {
-  display: none; 
+  display: none;
 }
 
 /* Promo Section */
@@ -634,7 +660,7 @@ footer {
   margin-bottom: 50px;
   height: 200px;
   padding: 0;
-  background-color: #FFD9DA; 
+  background-color: #ffd9da;
   text-align: center;
 }
 
@@ -664,7 +690,7 @@ footer {
 }
 
 .promo-content p {
-  font-family: 'Playpen Sans', cursive;
+  font-family: "Playpen Sans", cursive;
   font-weight: 600;
   font-size: 14px;
   color: #333;
@@ -696,13 +722,17 @@ footer {
 }
 
 .promo-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.53) 100%, transparent 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.53) 100%,
+    transparent 100%
+  );
   transform: translate(-50%, -50%);
   border-radius: 50%;
   pointer-events: none;
@@ -765,7 +795,7 @@ footer {
 }
 
 .event-trend-section .trend-card-wrapper {
-  flex: 0 0 230px;
+  flex: 0 0 220px;
   height: fit-content;
   background: transparent;
   border-radius: 12px;
@@ -777,8 +807,8 @@ footer {
 }
 
 .event-trend-section .trend-card-image img:hover {
-  transform: scale(0.97); 
-  transition: transform 0.5s ease; 
+  transform: scale(0.97);
+  transition: transform 0.5s ease;
 }
 
 .event-trend-section .trend-card-image {
@@ -1039,7 +1069,7 @@ footer {
 .event-trend-section .trend-card-meta span:last-child {
   font-weight: 560;
   margin-top: 8px;
-  color: #c12d83; 
+  color: #c12d83;
 }
 
 .event-trend-section .carousel-nav {
@@ -1082,7 +1112,6 @@ footer {
   padding: 0 16px;
 }
 
-/* Viền gradient động */
 .ad-border-wrapper {
   position: relative;
   display: inline-block;
@@ -1098,27 +1127,23 @@ footer {
   );
   background-size: 300% 300%;
   animation: gradientAnimation 6s ease infinite;
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4); /* thêm ánh sáng nhẹ */
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
 }
 
-/* Lớp chứa ảnh */
 .ad-image {
-  border-radius: 16px; /* Khớp với wrapper */
+  border-radius: 16px;
   overflow: hidden;
   position: relative;
   z-index: 1;
   width: 100%;
 }
-
-/* Ảnh */
 .ad-image img {
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 0; /* Không cần bo lại */
+  border-radius: 0;
 }
 
-/* Animation cho gradient border */
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -1202,22 +1227,26 @@ footer {
 
 .event-special-section .trend-card-wrapper .sub-poster {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 85px;
+  height: 125px;
   top: 100px;
   left: 16px;
-  border-radius: 16px;
+  border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 0 0 3px rgba(252, 239, 242, 0.506), 0 6px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(252, 239, 242, 0.506),
+    0 6px 16px rgba(0, 0, 0, 0.3);
   z-index: 2;
   background-color: white;
-  animation: levitate 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite; /* Thêm hiệu ứng lơ lửng và nhấp nháy */
-  transition: transform 0.3s ease; /* Hiệu ứng mượt mà khi hover */
+  animation: levitate 2s ease-in-out infinite,
+    pulseGlow 1.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 0 3px rgba(252, 239, 242, 0.506), 0 6px 8px rgba(0, 0, 0, 0.3);
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(252, 239, 242, 0.506),
+      0 6px 8px rgba(0, 0, 0, 0.3);
   }
   50% {
     box-shadow: 0 0 0 5px rgba(252, 239, 242, 0.8), 0 6px 8px rgba(0, 0, 0, 0.3);
@@ -1226,7 +1255,7 @@ footer {
 
 .event-special-section .trend-caption {
   margin-top: 8px;
-  padding: 10px 12px 0 130px;
+  padding: 10px 12px 0 120px;
   text-align: right;
 }
 
@@ -1616,4 +1645,3 @@ footer h4 {
 .footer-copy strong {
   color: white;
 }
-

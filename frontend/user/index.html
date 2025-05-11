@@ -19,9 +19,9 @@
       rel="stylesheet"
     />
 
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap" 
-        rel="stylesheet"
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap"
+      rel="stylesheet"
     />
 
     <!-- Icon -->
@@ -75,28 +75,45 @@
     <!-- Popup Đăng nhập -->
     <div class="login-popup" id="loginPopup">
       <div class="login-popup-content">
-        <span class="close-popup" id="closePopup">×</span>
-        <h2>Đăng nhập</h2>
-        <div class="login-form">
-          <label>Email hoặc số điện thoại</label>
-          <input
-            type="text"
-            id="emailInput"
-            placeholder="Email hoặc số điện thoại"
+        <div class="login-header">
+          <h2>Đăng nhập</h2>
+          <img
+            src="./assets/img/shiba_hello.png"
+            alt="Mascot"
+            class="header-mascot"
           />
-          <label>Mật khẩu</label>
-          <input type="password" id="passwordInput" placeholder="Mật khẩu" />
-          <button class="continue-btn" id="continueBtn">Tiếp tục</button>
-          <a href="#" class="forgot-password">Quên mật khẩu?</a>
-          <p class="signup-link">
-            Chưa có tài khoản? <a href="#">Tạo tài khoản ngay</a>
-          </p>
-          <div class="divider">
-            <span>Hoặc</span>
+          <span class="close-popup" id="closePopup">×</span>
+        </div>
+
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="emailInput" required autocomplete="off" />
+              <label for="emailInput">Email hoặc số điện thoại</label>
+            </div>
+            <div class="inputGroup">
+              <input
+                type="password"
+                id="passwordInput"
+                required
+                autocomplete="off"
+              />
+              <label for="passwordInput">Mật khẩu</label>
+            </div>
+            <button class="continue-btn" id="continueBtn">Tiếp tục</button>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+            <p class="signup-link">
+              Chưa có tài khoản? <a href="#">Tạo tài khoản ngay</a>
+            </p>
+            <div class="divider">
+              <span>Hoặc</span>
+            </div>
+            <div class="social-login-wrapper">
+              <button class="google-login-btn">
+                <img src="./assets/img/logo/Google.png" alt="Google Icon" />
+              </button>
+            </div>
           </div>
-          <button class="google-login-btn">
-            <img src="./assets/img/logo/Google.png" alt="Google Icon" />
-          </button> 
         </div>
       </div>
     </div>
@@ -172,11 +189,14 @@
           <div class="promo-content">
             <p>
               Có nơi những ý tưởng không chỉ nảy mầm - mà nở rộ<br />
-              Mỗi sự kiện ở đây, không phải một buổi diễn, mà là một câu chuyện<br />
+              Mỗi sự kiện ở đây, không phải một buổi diễn, mà là một câu
+              chuyện<br />
               Chọn một lần - cả thế giới ngước nhìn<br />
               Tạo sự kiện ngay - vì khoảnh khắc của bạn xứng đáng được nhớ
             </p>
-            <a href="./pages/create-event.html" class="promo-button">Tạo sự kiện</a>
+            <a href="./pages/create-event.html" class="promo-button"
+              >Tạo sự kiện</a
+            >
           </div>
         </div>
       </section>
@@ -202,12 +222,12 @@
         <div class="ad-wrapper">
           <div class="ad-border-wrapper">
             <div class="ad-image">
-              <img src="./assets/img/qcao2.jpg" alt="Ad image">
+              <img src="./assets/img/qcao2.jpg" alt="Ad image" />
             </div>
           </div>
         </div>
       </section>
-      
+
       <!-- Event special section -->
       <section class="event-special-section">
         <h2 class="section-title">

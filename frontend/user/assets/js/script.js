@@ -288,16 +288,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===== promotional section =====
-const promoBtn = document.querySelector('.promo-button');
+const promoBtn = document.querySelector(".promo-button");
 
-promoBtn.addEventListener('mouseenter', () => {
+promoBtn.addEventListener("mouseenter", () => {
   // Hiệu ứng confetti trung tâm
   confetti({
     particleCount: 80,
     spread: 90,
     origin: { y: 0.6 },
-    colors: ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd'],
-    scalar: 1.2
+    colors: ["#ff0a54", "#ff477e", "#ff7096", "#ff85a1", "#fbb1bd"],
+    scalar: 1.2,
   });
 
   // Hiệu ứng nổ pháo bên trái
@@ -306,10 +306,10 @@ promoBtn.addEventListener('mouseenter', () => {
     angle: 60, // Điều chỉnh góc để nổ lệch sang trái
     spread: 60,
     origin: { x: 0.2, y: 0.6 }, // Vị trí lệch sang trái
-    colors: ['#ff0a54', '#ff477e', '#ffd700', '#ffeb3b'],
-    shapes: ['circle', 'star'],
+    colors: ["#ff0a54", "#ff477e", "#ffd700", "#ffeb3b"],
+    shapes: ["circle", "star"],
     scalar: 1.5,
-    drift: 0.1
+    drift: 0.1,
   });
 
   // Hiệu ứng nổ pháo bên phải
@@ -318,18 +318,22 @@ promoBtn.addEventListener('mouseenter', () => {
     angle: 120, // Điều chỉnh góc để nổ lệch sang phải
     spread: 60,
     origin: { x: 0.8, y: 0.6 }, // Vị trí lệch sang phải
-    colors: ['#ff0a54', '#ff477e', '#ffd700', '#ffeb3b'],
-    shapes: ['circle', 'star'],
+    colors: ["#ff0a54", "#ff477e", "#ffd700", "#ffeb3b"],
+    shapes: ["circle", "star"],
     scalar: 1.5,
-    drift: 0.1
+    drift: 0.1,
   });
 });
 
 // ===== event trend section =====
 document.addEventListener("DOMContentLoaded", async () => {
   const track = document.getElementById("carouselTrack");
-  const nextBtn = document.querySelector(".event-trend-section .carousel-nav.next");
-  const prevBtn = document.querySelector(".event-trend-section .carousel-nav.prev");
+  const nextBtn = document.querySelector(
+    ".event-trend-section .carousel-nav.next"
+  );
+  const prevBtn = document.querySelector(
+    ".event-trend-section .carousel-nav.prev"
+  );
   let scrollPosition = 0;
   const cardWidth = 230;
   const gap = 16;
@@ -355,7 +359,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.innerHTML = `
         <div class="trend-card-image-wrapper">
           <div class="trend-card-image">
-            <img src="${event.poster}" alt="${event.title}" />
+            <img src="${event.poster_sub}" alt="${event.title}" />
           </div>
         </div>
         <div class="trend-card-footer">
@@ -433,7 +437,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.className = "trend-card-wrapper";
       card.innerHTML = `
         <img src="${event.poster}" alt="${event.title}" class="main-banner" />
-        <img src="${event.poster}" alt="${event.title}" class="sub-poster" />
+        <img src="${event.poster_sub}" alt="${event.title}" class="sub-poster" />
         <div class="trend-caption">
           <div class="trend-title">${event.title}</div>
           <div class="trend-date">${event.event_info.date}</div>
@@ -461,10 +465,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Lỗi tải dữ liệu sự kiện đặc biệt:", error);
   }
 });
-
-
-
-
-
-
-

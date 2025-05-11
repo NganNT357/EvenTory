@@ -4,6 +4,7 @@
     "title": "BABYMONSTER - Hello Monsters Tour",
     "city": "TP.HCM",
     "poster": "assets/img/poster1.jpg",
+    "poster_sub": "assets/img/poster1_sub.jpg",
     "video": "assets/img/banner1.mp4",
     "intro": "BABYMONSTER trở lại với tour diễn đầu tiên tại Việt Nam, mang đến những tiết mục độc quyền chỉ có tại SECC.",
     "event_info": {
@@ -221,6 +222,7 @@
     "title": "BLACKPINK Encore Tour - Vietnam",
     "city": "TP.HCM",
     "poster": "assets/img/poster-blackpink-encore.jpg",
+    "poster_sub": "assets/img/poster-blackpink-encore_sub.jpg",
     "video": "assets/img/banner4.mp4",
     "intro": "BLACKPINK chính thức tổ chức encore concert cực hoành tráng tại Việt Nam.",
     "event_info": {
