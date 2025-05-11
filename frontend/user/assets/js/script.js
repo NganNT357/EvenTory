@@ -71,6 +71,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const pwdInput = document.getElementById("passwordInput");
+  const toggleBtn = document.querySelector(".toggle-password");
+  const icon = toggleBtn.querySelector(".material-symbols-rounded");
+
+  toggleBtn.addEventListener("click", () => {
+    const isPwd = pwdInput.type === "password";
+    pwdInput.type = isPwd ? "text" : "password";
+    icon.textContent = isPwd ? "visibility" : "visibility_off";
+    toggleBtn.setAttribute(
+      "aria-label",
+      isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
+    );
+  });
+});
+
 // ===== banner section =====
 document.addEventListener("DOMContentLoaded", () => {
   const bannerVideo = document.getElementById("bannerVideo");
