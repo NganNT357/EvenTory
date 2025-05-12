@@ -1,0 +1,43 @@
+/* Custom styles */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.approve-btn {
+  transition: transform 0.3s ease;
+}
+
+.approve-btn:hover {
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  transition: transform 0.3s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+.slide-down {
+  animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100%); opacity: 0; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0; }
+}
