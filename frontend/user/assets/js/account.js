@@ -102,3 +102,104 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((err) => console.error(err));
 });
+
+// ===== ACOUNT-EVENT =====
+document.addEventListener("DOMContentLoaded", () => {
+  const currentDate = new Date("2025-05-11"); // Ngày hiện tại: 11/05/2025
+  const eventsGrid = document.querySelector(".events-grid");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+
+  // Fetch và phân loại dữ liệu
+  fetch("../assets/data/event-detail-data.txt")
+    .then((res) =>
+      res.ok ? res.json() : Promise.reject("Không load được data")
+    )
+    .then((events) => {
+      const categorizedEvents = {
+        upcoming: [],
+        past: [],
+        pending: [],
+        draft: [],
+      };
+
+      events.forEach((event) => {
+        const eventDate = new Date(event.event_info.date);
+        const eventId = event.id.toLowerCase();
+
+        if (eventId.includes("babymonster") || eventId.includes("jack")) {
+          categorizedEvents.pending.push(event); // Giả định "Chờ duyệt"
+        } else if (eventId.includes("kara") || eventId.includes("aespa")) {
+          categorizedEvents.draft.push(event); // Giả định "Nháp"
+        } else {
+          if (eventDate >= currentDate) {
+            categorizedEvents.upcoming.push(event); // Sắp tới
+          } else {
+            categorizedEvents.past.push(event); // Đã qua
+          }
+        }
+      });
+
+      // Hàm render sự kiện
+      function renderEvents(filter = "upcoming") {
+        eventsGrid.innerHTML = "";
+        const eventsToShow = categorizedEvents[filter] || [];
+
+        if (eventsToShow.length === 0) {
+          eventsGrid.innerHTML = `<p style="text-align: center;">Không có sự kiện ${filter === "upcoming" ? "sắp tới" : filter === "past" ? "đã qua" : filter === "pending" ? "chờ duyệt" : "nháp"}.</p>`;
+          return;
+        }
+
+        eventsToShow.forEach((event) => {
+          const card = document.createElement("div");
+          const imgPath = "../" + (event.poster_sub || event.poster);
+          card.className = "event-card";
+          card.innerHTML = `
+            <div class="card-image">
+              <img src="${imgPath}" alt="${event.title || ""}" />
+            </div>
+            <div class="card-details">
+              <h3>${event.title || ""}</h3>
+              <ul class="event-info">
+                <li>
+                  <span class="material-symbols-rounded">event</span>
+                  ${event.event_info?.date || ""}${
+            event.event_info?.time ? ", " + event.event_info.time : ""
+          }
+                </li>
+                <li>
+                  <span class="material-symbols-rounded">location_on</span>
+                  ${event.event_info?.location || ""}
+                </li>
+                <li>
+                  <span class="material-symbols-rounded">person</span>
+                  ${event.host || ""}
+                </li>
+                <li>
+                  <span class="material-symbols-rounded">paid</span>
+                  ${event.tickets && event.tickets[0]?.price ? event.tickets[0].price + " VNĐ" : ""}
+                </li>
+              </ul>
+              
+            </div>
+          `;
+          eventsGrid.appendChild(card);
+        });
+      }
+
+      //<button class="btn-manage">Quản lý</button>
+
+      // Xử lý filter buttons
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          const filter = button.textContent.toLowerCase().replace(" ", "");
+          renderEvents(filter);
+        });
+      });
+
+      // Render mặc định cho "Sắp tới"
+      renderEvents("upcoming");
+    })
+    .catch((err) => console.error(err));
+});

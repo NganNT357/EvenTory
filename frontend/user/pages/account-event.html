@@ -36,8 +36,8 @@
     />
     <!-- Assets -->
     <link rel="stylesheet" href="../assets/css/acount.css" />
-    <script src="../assets/js/account.js"></script>
-    <title>Tài khoản</title>
+    <script src="../assets/js/account.js" defer></script>
+    <title>Sự kiện của tôi</title>
   </head>
   <body>
     <!-- ===== HEADER ===== -->
@@ -66,7 +66,7 @@
               <img src="../assets/img/avatar.jpg" alt="User Avatar" />
             </div>
             <div class="dropdown-menu">
-              <a href="#" class="dropdown-item active">
+              <a href="#" class="dropdown-item">
                 <span class="material-symbols-rounded">person</span>
                 Tài khoản
               </a>
@@ -74,7 +74,7 @@
                 <span class="material-symbols-rounded">star</span>
                 Vé đã mua
               </a>
-              <a href="#" class="dropdown-item">
+              <a href="#" class="dropdown-item active">
                 <span class="material-symbols-rounded">event</span>
                 Sự kiện của tôi
               </a>
@@ -88,67 +88,19 @@
       </div>
     </header>
 
-    <main class="account-page">
-      <h2>Thông tin tài khoản</h2>
+    <!-- ===== MAIN CONTENT: Sự kiện của tôi ===== -->
+    <main class="my-events-page">
+      <h2>Sự kiện của tôi</h2>
       <hr />
 
-      <!-- Avatar -->
-      <div class="profile-pic-upload">
-        <img
-          id="avatarPreview"
-          class="avatar-large"
-          src="../assets/img/avatar.jpg"
-          alt="Avatar hiện tại"
-        />
-        <label
-          for="avatarInput"
-          class="upload-btn"
-          aria-label="Thay ảnh đại diện"
-        >
-          <span class="material-symbols-rounded">edit</span>
-        </label>
-        <input
-          id="avatarInput"
-          type="file"
-          accept="image/*"
-          style="display: none"
-        />
+      <div class="filters">
+        <button class="filter-btn active">Sắp tới</button>
+        <button class="filter-btn">Đã qua</button>
+        <button class="filter-btn">Chờ duyệt</button>
+        <button class="filter-btn">Nháp</button>
       </div>
 
-      <!-- Information -->
-      <form class="account-form">
-        <div class="form-group">
-          <label for="fullname">Họ và tên</label>
-          <input id="fullname" type="text" value="Lee Sang-hyeok" />
-        </div>
-
-        <div class="form-group phone-group">
-          <label for="phone-number">Số điện thoại</label>
-          <input id="phone-number" type="tel" value="0123456789" />
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input id="email" type="email" value="info@t1.gg" />
-        </div>
-
-        <div class="form-group">
-          <label for="dob">Ngày sinh</label>
-          <div class="date-wrapper">
-            <input id="dob" type="date" value="1996-05-07" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Giới tính</label>
-          <div class="gender-options">
-            <label><input type="radio" name="gender" checked /> Nam</label>
-            <label><input type="radio" name="gender" /> Nữ</label>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-save">Lưu</button>
-      </form>
+      <div class="events-grid"></div>
     </main>
   </body>
 </html>
